@@ -1,0 +1,25 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis/blob/main/PeerReviewVC.jsonld"
+  ],
+  "id": "https://peerreview.org/reviews/1234",
+  "type": [
+    "VerifiableCredential",
+    "PeerReviewCredential"
+  ],
+  "issuer": "https://f1000research.org/did",
+  "issuanceDate": "2017-12-05T14:27:42Z",
+  "credentialSubject": {
+    "id": "doi:10.1000/182",
+    "type": "peerReview"
+  },
+  "reviewAuthor": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "journal": {
+    "issn": "2049-3630"
+  },
+  "proof": {}
+}

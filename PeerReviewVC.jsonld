@@ -1,0 +1,40 @@
+{
+  "@version": 0.1,
+  "@protected": true,
+  "PeerReviewCredential": "https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis/blob/main/PeerReviewVC.jsonld",
+  "peerReview": {
+    "@id": "https://schema.org/Review",
+    "@context": {
+      "@version": 12.0,
+      "@protected": true,
+      "@type": "https://schema.org/Review",
+      "text": "https://schema.org/Text"
+    }
+  },
+  "reviewAuthor": {
+    "@id": "http://schema.org/author",
+    "@context": {
+      "@version": 12.0,
+      "@protected": true,
+      "@type": "https://schema.org/Person",
+      "firstName": "https://schema.org/givenName",
+      "lastName": "https://schema.org/familyName"
+    }
+  },
+  "reviewDate": {
+    "@id": "https://schema.org/datePublished",
+    "@context": {
+      "@version": 12.0,
+      "@protected": true,
+      "@type": "https://schema.org/Date"
+    }
+  },
+  "journal": {
+    "@id": "https://schema.org/Periodical",
+    "@context": {
+      "@version": 12.0,
+      "@protected": true,
+      "@type": "Periodical"
+    }
+  }
+}
