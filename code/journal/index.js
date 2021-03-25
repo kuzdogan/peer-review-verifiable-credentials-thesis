@@ -3,11 +3,24 @@ const vc = require('vc-js');
 const keyPairOptions = require('./keypair.json')
 const { extendContextLoader } = require('jsonld-signatures');
 const { documentLoaders } = require("jsonld");
+const peerReviewSchema = require('../PeerReview.json')
 
 _main()
 
-/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+const documents = {
+  "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.jsonld": peerReviewSchema
+};
+
 const customDocLoader = (url) => {
+  const context = documents[url];
+
+  if (context) {
+    return {
+      contextUrl: null, // this is for a context via a link header
+      document: context, // this is the actual document that was loaded
+      documentUrl: url // this is the actual context URL after redirects
+    };
+  }
   return documentLoaders.node()(url);
 };
 const documentLoader = extendContextLoader(customDocLoader);
@@ -19,17 +32,30 @@ async function _main() {
   const credential = {
     "@context": [
       "https://www.w3.org/2018/credentials/v1",
-      "https://www.w3.org/2018/credentials/examples/v1"
+      "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.jsonld"
     ],
-    "id": "https://example.com/credentials/1872",
-    "type": ["VerifiableCredential", "AlumniCredential"],
-    "issuer": "https://example.edu/issuers/565049",
-    "issuanceDate": "2010-01-01T19:23:24Z",
+    "id": "https://peerreview.org/reviews/1234",
+    "type": [
+      "VerifiableCredential",
+      "PeerReviewCredential"
+    ],
+    "description": "Peer Review Credential for the article Tourette syndrome research highlights from 2018",
+    "issuer": "https://f1000research.org/.well-known/did.jsonld",
+    "issuanceDate": "2017-12-05T14:27:42Z",
     "credentialSubject": {
-      "id": "did:example:ebfeb1f712ebc6f1c276e12ec21",
-      "alumniOf": "Example University"
+      "id": "doi:10.1000/182",
+      "type": "PeerReview",
+      "name": "Peer Review: Tourette syndrome research highlights from 2018",
+      "author": {
+        "type": "PeerReviewAuthor",
+        "id": "orcid:0000-0002-3037-3890",
+        "givenName": "Marc",
+        "familyName": "Lavoie",
+        "email": "marc@lavoie.net"
+      }
     }
-  };
+  }
+
 
 
   const keyPair = await new Bls12381G2KeyPair(keyPairOptions);
