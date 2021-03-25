@@ -1,0 +1,27 @@
+{
+  "name": "peer-review-verifiable-credentials",
+  "version": "0.0.1",
+  "description": "A PoC code for the Peer Review use case of Verifiable Credentials with Zero-Knowledge Proofs & Selective Disclosure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis.git"
+  },
+  "keywords": [
+    "peer-review",
+    "verifiable-credentials",
+    "zk-proofs"
+  ],
+  "author": "kuzdogan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis/issues"
+  },
+  "homepage": "https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis#readme",
+  "dependencies": {
+    "@mattrglobal/jsonld-signatures-bbs": "^0.8.0"
+  }
+}
