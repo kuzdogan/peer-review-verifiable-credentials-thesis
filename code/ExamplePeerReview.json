@@ -1,12 +1,13 @@
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
-    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json"
+    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json",
+    "https://w3id.org/security/bbs/v1"
   ],
   "id": "https://peerreview.org/reviews/1234",
   "type": ["VerifiableCredential", "PeerReviewCredential"],
   "description": "Peer Review Credential for the article Tourette syndrome research highlights from 2018",
-  "issuer": "https://f1000research.org/.well-known/did.json",
+  "issuer": "did:example:489398593",
   "issuanceDate": "2017-12-05T14:27:42Z",
   "credentialSubject": {
     "id": "doi:10.1000/182",
