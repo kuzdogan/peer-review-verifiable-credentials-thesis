@@ -1,9 +1,10 @@
-const { BbsBlsSignature2020, Bls12381G2KeyPair } = require("@mattrglobal/jsonld-signatures-bbs");
+const { BbsBlsSignature2020, Bls12381G2KeyPair, BbsBlsSignatureProof2020, deriveProof } = require("@mattrglobal/jsonld-signatures-bbs");
 const { extendContextLoader, purposes, verify, sign } = require('jsonld-signatures');
 const { documentLoaders } = require("jsonld");
 const keyPairOptions = require('./keypair.json')
 const examplePR = require('../ExamplePeerReview.json');
 const exampleControllerDoc = require("./controllerDocument.json");
+const deriveProofFrame = require('../deriveProofFrame.json');
 
 // cached contexts
 const peerReviewSchema = require('../PeerReview.json');
@@ -42,22 +43,24 @@ const documentLoader = extendContextLoader(customDocLoader);
 
 
 async function _main() {
-  let signedVC, isVerified
   try {
-    signedVC = await issuePeerReview(examplePR);
+    let signedVC = await issuePeerReview(examplePR);
     console.log(signedVC);
+    let isVerified = await verifyPeerReview(signedVC);
+    console.log(isVerified);
+    let selectiveDisclosedCredential = await selectiveDisclose(signedVC, deriveProofFrame);
+    console.log(selectiveDisclosedCredential);
+    let isDerivedCredentialVerified = await verifySelectiveDisclosedCredential(selectiveDisclosedCredential);
+    console.log(isDerivedCredentialVerified);
   } catch (err) {
     console.log('Error issuing credential');
     console.error(err);
   }
-  try {
-    isVerified = await verifyPeerReview(signedVC);
-    console.log('Verified: ', isVerified);
-  } catch (err) {
-    console.log('Error verifying credential');
-    console.error(err);
-  }
 }
+
+
+
+
 
 async function verifyPeerReview(signedCredential) {
   console.log('Verifying Credential')
@@ -80,4 +83,21 @@ async function issuePeerReview(unsignedCredential) {
     documentLoader
   });
   return signedVC;
+}
+
+async function selectiveDisclose(signedDocument, revealDocument) {
+  const derivedProof = await deriveProof(signedDocument, revealDocument, {
+    suite: new BbsBlsSignatureProof2020(),
+    documentLoader
+  });
+  return derivedProof;
+}
+
+async function verifySelectiveDisclosedCredential(derivedProof) {
+  let verified = await verify(derivedProof, {
+    suite: new BbsBlsSignatureProof2020(),
+    purpose: new purposes.AssertionProofPurpose(),
+    documentLoader
+  });
+  return verified;
 }
