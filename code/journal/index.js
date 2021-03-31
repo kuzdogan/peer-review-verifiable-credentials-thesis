@@ -49,7 +49,9 @@ async function _main() {
     let isVerified = await verifyPeerReview(signedVC);
     console.log(isVerified);
     let selectiveDisclosedCredential = await selectiveDisclose(signedVC, deriveProofFrame);
+    // selectiveDisclosedCredential.proof.nonce = 'x' + selectiveDisclosedCredential.proof.nonce.slice(1) // break the proof
     console.log(selectiveDisclosedCredential);
+
     let isDerivedCredentialVerified = await verifySelectiveDisclosedCredential(selectiveDisclosedCredential);
     console.log(isDerivedCredentialVerified);
   } catch (err) {
