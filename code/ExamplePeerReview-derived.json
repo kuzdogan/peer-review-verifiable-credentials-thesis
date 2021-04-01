@@ -1,0 +1,25 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json",
+    "https://w3id.org/security/bbs/v1"
+  ],
+  "id": "https://peerreview.org/reviews/1234",
+  "type": ["PeerReviewCredential", "VerifiableCredential"],
+  "description": "Peer Review Credential for the article Tourette syndrome research highlights from 2018",
+  "credentialSubject": {
+    "id": "doi:10.1000/182",
+    "type": "PeerReview",
+    "journal": "F1000Research"
+  },
+  "issuanceDate": "2017-12-05T14:27:42Z",
+  "issuer": "did:example:489398593",
+  "proof": {
+    "type": "BbsBlsSignatureProof2020",
+    "created": "2021-04-01T13:57:17Z",
+    "nonce": "gM8HYKVtp6q2+QJA40a99V0omeZL6um7tlIO6A/AEX8HT64ZJXBhgdc3vAlA5BDKWWs=",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "ABIAP6+icy5BO5mBV3L05zm/IFh8Nt8BtERRCyQPqxafy30P0Lu0HRTRvdEPM94hhLhCe9SNRal/H8/VMhNLu+TcoXIAO001TooEFIj4aabfaOXSHFqv5dE6qUStDydkB/ZJ9ZSvKHt8PmN6m2sjqbFSuVaRfS9lK2gRjmRN37C+RxuUI9k+0rMkD9XtwhMp+36hMu4AAAB0jqX3z86YGpnSJczC/wqktwSR4WOFuYc2dRHg3cALTSnpfrdRi/tCMsJDsVQlpNwuAAAAAm1+C92zLfwwAZV6KLo6SY8bqYWYDi9uPHAzKahdlUDIR4ohCy4BaYEiov3Gw1J+eTGhy69xNnPf5wLV3vmNDPaFct4K2a4KJom5j7QoEQJT9SfZ/ptqVV+M6Qmz59NW2XUEoMPu8GmXuHG/IBFgwx8AAAAIQ/MPzv99jk10dLhdZnSTE8TflKGoWF8Qw+o71I9E59kmKLNYAE2ErnqAXdZQEBuu1QVZ1eDYxj6uLMicwZEclW+TbKWvVunSlvrmMWX83CATLNwNm2MAjhM7I3CLfZW7bZN+v5X5q3jT7Ugnf/uiUnNQUtQZ0c+rA9Ng3YsC3q5xaEozkks2dmrzXR4lpnRHHl9yfCOvEqfPNo+FYUAQYBFPCwnuzvtMMkAv94cIc08BWGz4qjW8TIM3bEt2RUCwRO/RULgzC6JvScQ3sWiZXzBvhLG5kU8eVdw64jehWsEYdKIHY3pC+suN2oYQzPx0aprwGWoef6tWwqCCkOTKNA==",
+    "verificationMethod": "did:example:489398593#test"
+  }
+}
