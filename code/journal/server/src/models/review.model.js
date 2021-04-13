@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const { recommendationTypes } = require('../config/reviews');
-const { toJSON } = require('./plugins');
+const { paginate, toJSON } = require('./plugins');
 
 const reviewSchema = mongoose.Schema(
   {
-    author: {
+    reviewer: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'User',
       required: true,
@@ -40,6 +40,7 @@ const reviewSchema = mongoose.Schema(
 
 // add plugin that converts mongoose to json
 reviewSchema.plugin(toJSON);
+reviewSchema.plugin(paginate);
 
 /**
  * @typedef Token

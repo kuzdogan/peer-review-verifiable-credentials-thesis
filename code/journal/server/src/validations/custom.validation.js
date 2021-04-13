@@ -1,3 +1,5 @@
+const { recommendationTypes } = require('../config/reviews');
+
 const objectId = (value, helpers) => {
   if (!value.match(/^[0-9a-fA-F]{24}$/)) {
     return helpers.message('"{{#label}}" must be a valid mongo id');
@@ -15,7 +17,15 @@ const password = (value, helpers) => {
   return value;
 };
 
+const recommendationType = (value, helpers) => {
+  if (Object.values(recommendationTypes).includes(value)) {
+    return value;
+  }
+  return helpers.message('incorrect review reccomentation type');
+};
+
 module.exports = {
   objectId,
   password,
+  recommendationType,
 };
