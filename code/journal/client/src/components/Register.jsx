@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -30,9 +31,9 @@ export default function Register() {
       <div className='self-center mb-2 text-xl font-light text-gray-800 sm:text-2xl dark:text-white'>Create a new account</div>
       <span className='justify-center text-sm text-center text-gray-500 flex-items-center dark:text-gray-400'>
         Already have an account ?
-        <a href='#' target='_blank' className='text-sm text-blue-500 underline hover:text-blue-700'>
+        <Link to='/login' className='text-sm text-blue-500 underline hover:text-blue-700'>
           Sign in
-        </a>
+        </Link>
       </span>
       <div className='p-6 mt-8'>
         <form onSubmit={handleRegister}>

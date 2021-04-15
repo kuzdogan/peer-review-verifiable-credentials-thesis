@@ -7,7 +7,7 @@ const Home = () => {
     console.log('Welcome home');
   }, []);
 
-  return <div className='container'>Home</div>;
+  return <div className='h-screen v-full'>Home</div>;
 };
 
 export default Home;

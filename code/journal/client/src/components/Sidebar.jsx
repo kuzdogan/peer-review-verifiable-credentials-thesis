@@ -1,4 +1,5 @@
 import React from 'react';
+import { logout } from '../services/auth.service';
 
 export default function Navbar() {
   return (
@@ -16,7 +17,7 @@ export default function Navbar() {
       </div>
 
       <div className='flex flex-col justify-between flex-1 mt-6'>
-        <nav>
+        <nav className='flex flex-col flex-1'>
           <a className='flex items-center px-4 py-2 text-gray-700 bg-gray-200 dark:bg-gray-700 dark:text-gray-200' href='#'>
             <svg className='w-5 h-5' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
               <path
@@ -94,6 +95,13 @@ export default function Navbar() {
             </svg>
 
             <span className='mx-4 font-medium'>Settings</span>
+          </a>
+          <a
+            className='flex justify-center align-self-end px-4 py-2 mx-8 rounded-xl mt-auto text-gray-50 transition-colors duration-200 transform bg-red-400 hover:bg-red-600'
+            href='#'
+            onClick={logout}
+          >
+            <span className='font-medium'>Log Out</span>
           </a>
         </nav>
       </div>
