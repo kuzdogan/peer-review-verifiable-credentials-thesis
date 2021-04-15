@@ -7,8 +7,12 @@ const ApiError = require('../utils/ApiError');
  * @param {Object} reviewBody
  * @returns {Promise<Review>}
  */
-const createReview = async (reviewBody) => {
-  const review = await Review.create(reviewBody.submissionDate ? reviewBody : { ...reviewBody, submissionDate: new Date() });
+const createReview = async (reviewBody, user) => {
+  const review = await Review.create(
+    reviewBody.submissionDate
+      ? { ...reviewBody, reviewer: user._id }
+      : { ...reviewBody, reviewer: user._id, submissionDate: new Date() }
+  );
   return review;
 };
 

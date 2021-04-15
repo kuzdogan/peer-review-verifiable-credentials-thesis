@@ -3,7 +3,6 @@ const { objectId } = require('./custom.validation');
 
 const createManuscript = {
   body: Joi.object().keys({
-    author: Joi.string().required().custom(objectId),
     abstract: Joi.string().required(),
     content: Joi.string().required(),
     submissionDate: Joi.date(),

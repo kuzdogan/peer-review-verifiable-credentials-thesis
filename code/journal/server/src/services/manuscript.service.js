@@ -7,9 +7,11 @@ const ApiError = require('../utils/ApiError');
  * @param {Object} manuscriptBody
  * @returns {Promise<Manuscript>}
  */
-const createManuscript = async (manuscriptBody) => {
+const createManuscript = async (manuscriptBody, user) => {
   const manuscript = await Manuscript.create(
-    manuscriptBody.submissionDate ? manuscriptBody : { ...manuscriptBody, submissionDate: new Date() }
+    manuscriptBody.submissionDate
+      ? { manuscriptBody, author: user._id }
+      : { ...manuscriptBody, author: user._id, submissionDate: new Date() }
   );
   return manuscript;
 };

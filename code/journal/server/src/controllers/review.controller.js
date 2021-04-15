@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const { reviewService } = require('../services');
 
 const createReview = catchAsync(async (req, res) => {
-  const review = await reviewService.createReview(req.body);
+  const review = await reviewService.createReview(req.body, req.user);
   res.status(httpStatus.CREATED).send(review);
 });
 

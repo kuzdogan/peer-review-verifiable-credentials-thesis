@@ -5,7 +5,7 @@ const catchAsync = require('../utils/catchAsync');
 const { manuscriptService } = require('../services');
 
 const createManuscript = catchAsync(async (req, res) => {
-  const manuscript = await manuscriptService.createManuscript(req.body);
+  const manuscript = await manuscriptService.createManuscript(req.body, req.user);
   res.status(httpStatus.CREATED).send(manuscript);
 });
 
