@@ -7,4 +7,14 @@ export const createManuscript = (manuscript) => axios.post(`${API_URL}`, { manus
 
 export const readManuscript = (manuscriptId) => axios.get(`${API_URL}/${manuscriptId}`, { headers: authHeader() });
 
-export const readManuscripts = (filter) => axios.get(`${API_URL}`, { headers: authHeader(), params: filter });
+export const readManuscripts = (filter, options) =>
+  axios.get(`${API_URL}`, { headers: authHeader(), params: filter, options: { ...options, populate: true } });
+
+export const readOwnManuscripts = () =>
+  axios.get(`${API_URL}`, {
+    headers: authHeader(),
+    params: {
+      author: JSON.parse(localStorage.getItem('user')).id,
+      populate: 'author',
+    },
+  });
