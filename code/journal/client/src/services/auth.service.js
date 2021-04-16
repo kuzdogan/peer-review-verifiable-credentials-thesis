@@ -42,7 +42,6 @@ export const login = (email, password) =>
 
 export const logout = () => {
   const refreshToken = localStorage.getItem('refreshToken');
-  console.log(refreshToken);
   return axios.post(`${API_URL}/logout`, { refreshToken }).then(() => {
     localStorage.removeItem('user');
     localStorage.removeItem('accessToken');

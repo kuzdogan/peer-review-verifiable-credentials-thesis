@@ -1,13 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const Home = () => {
-  // const [content, setContent] = useState('');
-
-  useEffect(() => {
-    console.log('Welcome home');
-  }, []);
-
-  return <div className='h-screen v-full'>Home</div>;
-};
+const Home = () => <div className='h-screen v-full'>Home</div>;
 
 export default Home;

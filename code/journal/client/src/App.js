@@ -5,12 +5,14 @@ import PrivateRoute from './components/PrivateRoute';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import ManuscriptsPage from './pages/ManuscriptsPage';
 import RegisterPage from './pages/RegisterPage';
+import ReviewsPage from './pages/ReviewsPage';
 import { isLoggedIn } from './services/auth.service';
 import UserContext from './UserContext';
 
 function App() {
-  const [user, setUser] = useState(localStorage.getItem('user'));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
@@ -21,6 +23,8 @@ function App() {
             <Route exact path='/login' component={LoginPage} />
             <Route exact path='/register' component={RegisterPage} />
             <PrivateRoute exact path={['/', '/home']} component={Home} />
+            <PrivateRoute exact path='/reviews' component={ReviewsPage} />
+            <PrivateRoute exact path='/manuscripts' component={ManuscriptsPage} />
           </Switch>
         </div>
       </div>
