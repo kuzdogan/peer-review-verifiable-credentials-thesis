@@ -8,12 +8,8 @@ const ApiError = require('../utils/ApiError');
  * @returns {Promise<Manuscript>}
  */
 const createManuscript = async (manuscriptBody, user) => {
-  const manuscript = await Manuscript.create(
-    manuscriptBody.submissionDate
-      ? { manuscriptBody, author: user._id }
-      : { ...manuscriptBody, author: user._id, submissionDate: new Date() }
-  );
-  return manuscript;
+  const manuscript = await Manuscript.create({ ...manuscriptBody, author: user._id });
+  return manuscript.populate();
 };
 
 /**
@@ -36,7 +32,7 @@ const queryManuscripts = async (filter, options) => {
  * @returns {Promise<Manuscript>}
  */
 const getManuscriptById = async (id) => {
-  return Manuscript.findById(id);
+  return Manuscript.findById(id).populate();
 };
 
 /**
@@ -45,7 +41,7 @@ const getManuscriptById = async (id) => {
  * @returns {Promise<Manuscript>}
  */
 const getManuscriptByAuthorId = async (authorId) => {
-  return Manuscript.findOne({ author: authorId });
+  return Manuscript.findOne({ author: authorId }).populate();
 };
 
 /**
@@ -61,7 +57,7 @@ const updateManuscriptById = async (manuscriptId, updateBody) => {
   }
   Object.assign(manuscript, updateBody);
   await manuscript.save();
-  return manuscript;
+  return manuscript.populate();
 };
 
 /**

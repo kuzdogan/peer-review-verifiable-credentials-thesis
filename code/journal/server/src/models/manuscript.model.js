@@ -1,11 +1,21 @@
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
+const { status } = require('../config/manuscripts');
 
 const manuscriptSchema = mongoose.Schema(
   {
     author: {
       type: mongoose.SchemaTypes.ObjectId,
       ref: 'User',
+      required: true,
+    },
+    reviewers: {
+      type: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
+      default: [],
+      required: true,
+    },
+    title: {
+      type: String,
       required: true,
     },
     abstract: {
@@ -19,6 +29,13 @@ const manuscriptSchema = mongoose.Schema(
     submissionDate: {
       type: Date,
       required: true,
+      default: new Date(),
+    },
+    status: {
+      type: String,
+      enum: status,
+      required: true,
+      default: status.PENDING,
     },
   },
   {

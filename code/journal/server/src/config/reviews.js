@@ -1,8 +1,8 @@
 const recommendationTypes = {
-  ACCEPT: 'accept',
-  MINOR_REVISION: 'minorRevision',
-  MAJOR_REVISION: 'majorRevision',
-  REJECT: 'reject',
+  ACCEPT: 'Accept',
+  MINOR_REVISION: 'Minor Revision',
+  MAJOR_REVISION: 'Major Revision',
+  REJECT: 'Reject',
 };
 
 module.exports = {

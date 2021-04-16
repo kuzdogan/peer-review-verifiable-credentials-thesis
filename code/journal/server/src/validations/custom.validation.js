@@ -1,3 +1,4 @@
+const { status } = require('../config/manuscripts');
 const { recommendationTypes } = require('../config/reviews');
 
 const objectId = (value, helpers) => {
@@ -24,8 +25,16 @@ const recommendationType = (value, helpers) => {
   return helpers.message('incorrect review reccomentation type');
 };
 
+const statusType = (value, helpers) => {
+  if (Object.values(status).includes(value)) {
+    return value;
+  }
+  return helpers.message('incorrect manuscript status type');
+};
+
 module.exports = {
   objectId,
   password,
   recommendationType,
+  statusType,
 };
