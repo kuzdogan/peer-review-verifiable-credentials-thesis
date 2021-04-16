@@ -9,7 +9,7 @@ import LoginPage from './pages/LoginPage';
 import ManuscriptsPage from './pages/ManuscriptsPage';
 import RegisterPage from './pages/RegisterPage';
 import ReviewsPage from './pages/ReviewsPage';
-import SubmitManuscript from './pages/SubmitManuscript';
+import SubmitManuscriptPage from './pages/SubmitManuscriptPage';
 import { isLoggedIn } from './services/auth.service';
 import UserContext from './UserContext';
 
@@ -20,7 +20,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <div className='flex flex-row'>
         {isLoggedIn() ? <Sidebar /> : null}
-        <div className='h-screen w-full'>
+        <div className='h-screen w-full bg-gray-50'>
           <PageTitle />
           <Switch>
             <Route exact path='/login' component={LoginPage} />
@@ -28,7 +28,7 @@ function App() {
             <PrivateRoute exact path={['/', '/home']} component={Home} />
             <PrivateRoute exact path='/reviews' component={ReviewsPage} />
             <PrivateRoute exact path='/manuscripts' component={ManuscriptsPage} />
-            <PrivateRoute exact path='/manuscripts/submit' component={SubmitManuscript} />
+            <PrivateRoute exact path='/manuscripts/submit' component={SubmitManuscriptPage} />
           </Switch>
         </div>
       </div>
