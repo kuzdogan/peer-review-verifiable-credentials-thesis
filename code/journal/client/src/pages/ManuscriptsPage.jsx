@@ -13,12 +13,8 @@ const ManuscriptsPage = () => {
     return 'Loading...';
   }
 
-  if (manuscripts.length === 0) {
-    return "You don't have any manuscripts";
-  }
-
   return (
-    <div className='flex flex-wrap mx-8'>
+    <div className='flex mx-8 flex-col flex-1'>
       <div className='flex w-full justify-center'>
         <Link to='/manuscripts/submit'>
           <button
@@ -29,9 +25,13 @@ const ManuscriptsPage = () => {
           </button>
         </Link>
       </div>
-      {manuscripts.map((manuscript) => (
-        <ManuscriptCard manuscript={manuscript} key={manuscript.id} />
-      ))}
+      {manuscripts.length === 0 ? (
+        <div className='flex flex-col flex-1 text-center justify-center'>
+          <div>You don't have any manuscripts</div>
+        </div>
+      ) : (
+        manuscripts.map((manuscript) => <ManuscriptCard manuscript={manuscript} key={manuscript.id} />)
+      )}
     </div>
   );
 };
