@@ -14,10 +14,10 @@ export const register = (name, email, password) =>
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('accessToken', response.data.tokens.access.token);
         localStorage.setItem('accessExpires', response.data.tokens.access.expires);
-        localStorage.setItem('refreshToken', JSON.stringify(response.data.tokens.refresh.token));
+        localStorage.setItem('refreshToken', response.data.tokens.refresh.token);
         localStorage.setItem('refreshExpires', response.data.tokens.refresh.expires);
       }
-
+      window.location.replace('/');
       return response.data;
     });
 
@@ -31,9 +31,9 @@ export const login = (email, password) =>
       if (response.data.user) {
         localStorage.setItem('user', JSON.stringify(response.data.user));
         localStorage.setItem('accessToken', response.data.tokens.access.token);
-        localStorage.setItem('accessExpires', JSON.stringify(response.data.tokens.access.expires));
+        localStorage.setItem('accessExpires', response.data.tokens.access.expires);
         localStorage.setItem('refreshToken', response.data.tokens.refresh.token);
-        localStorage.setItem('refreshExpires', JSON.stringify(response.data.tokens.refresh.expires));
+        localStorage.setItem('refreshExpires', response.data.tokens.refresh.expires);
         window.location.replace('/');
       }
 
