@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { register } from '../services/auth.service';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -18,12 +19,9 @@ export default function Register() {
     setPassword(e.target.value);
   };
 
-  const handleRegister = () => {
-    console.log({
-      name,
-      email,
-      password,
-    });
+  const handleRegister = (e) => {
+    e.preventDefault();
+    register(name, email, password);
   };
 
   return (
@@ -37,17 +35,6 @@ export default function Register() {
       </span>
       <div className='p-6 mt-8'>
         <form onSubmit={handleRegister}>
-          <div className='flex flex-col mb-2'>
-            <div className=' relative '>
-              <input
-                type='text'
-                id='create-account-pseudo'
-                className=' rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
-                name='pseudo'
-                placeholder='Pseudo'
-              />
-            </div>
-          </div>
           <div className='flex gap-4 mb-2'>
             <div className=' relative '>
               <input
