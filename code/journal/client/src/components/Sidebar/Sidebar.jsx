@@ -8,7 +8,7 @@ export default function Navbar() {
   const { user } = useContext(UserContext);
   const location = useLocation();
 
-  const isActive = (path) => !!matchPath(location.pathname, path);
+  const isActive = (path) => !!matchPath(location.pathname, { path, exact: true, strict: true });
 
   const highlightActive = (path) => (isActive(path) ? 'bg-gray-200' : null);
 
@@ -24,23 +24,30 @@ export default function Navbar() {
 
       <div className='flex flex-col justify-between flex-1 mt-6'>
         <nav className='flex flex-col flex-1'>
-          <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/home')}`} href='#'>
-            <Link to='/home'>
+          <Link to='/home'>
+            <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/home')}`} href='#'>
               <span className='mx-4 font-medium'>Home</span>
-            </Link>
-          </a>
+            </a>
+          </Link>
 
-          <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/manuscripts')}`} href='#'>
-            <Link to='/manuscripts'>
+          <Link to='/manuscripts'>
+            <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/manuscripts')}`} href='#'>
               <span className='mx-4 font-medium'>Manuscripts</span>
-            </Link>
-          </a>
+            </a>
+          </Link>
 
-          <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/reviews')}`} href='#'>
-            <Link to='/reviews'>
+          <Link to='/reviews'>
+            <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/reviews')}`} href='#'>
               <span className='mx-4 font-medium'>Reviews</span>
+            </a>
+          </Link>
+          {user.role === 'editor' ? (
+            <Link to='/reviews/manage'>
+              <a className={`flex items-center px-4 py-2 text-gray-700 ${highlightActive('/reviews/manage')}`} href='#'>
+                <span className='mx-4 font-medium'>Manage Reviews</span>
+              </a>
             </Link>
-          </a>
+          ) : null}
 
           <a
             className='flex justify-center align-self-end px-4 py-2 mx-8 rounded-xl mt-auto text-gray-50 transition-colors duration-200 transform bg-red-400 hover:bg-red-600'
