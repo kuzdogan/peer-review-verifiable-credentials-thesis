@@ -8,6 +8,8 @@ const ManuscriptCard = ({ manuscript }) => {
     switch (status) {
       case 'Pending':
         return <span className='px-4 py-2  text-base rounded-full text-yellow-600  bg-yellow-200 '>Pending</span>;
+      case 'In Review':
+        return <span className='px-4 py-2  text-base rounded-full text-blue-600  bg-blue-200 '>In Review</span>;
       case 'Minor Revision':
         return (
           <span className='px-4 py-2  text-base rounded-full text-orange-500  bg-orange-200 '>Minor Revision Requested</span>
