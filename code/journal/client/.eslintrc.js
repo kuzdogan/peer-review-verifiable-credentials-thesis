@@ -17,6 +17,7 @@ module.exports = {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/state-in-constructor': 'off',
     'react/prop-types': 'off',
+    'react/no-array-index-key': 'off',
     'no-underscore-dange': 'off',
     'jsx-a11y': 'off',
   },
