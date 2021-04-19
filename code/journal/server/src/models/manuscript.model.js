@@ -14,6 +14,11 @@ const manuscriptSchema = mongoose.Schema(
       default: [],
       required: true,
     },
+    reviews: {
+      type: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'Review' }],
+      default: [],
+      required: true,
+    },
     title: {
       type: String,
       required: true,

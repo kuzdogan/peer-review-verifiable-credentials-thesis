@@ -32,7 +32,7 @@ const queryManuscripts = async (filter, options) => {
  * @returns {Promise<Manuscript>}
  */
 const getManuscriptById = async (id) => {
-  return Manuscript.findById(id).populate();
+  return Manuscript.findById(id).populate('reviewers').populate('author');
 };
 
 /**
@@ -41,7 +41,7 @@ const getManuscriptById = async (id) => {
  * @returns {Promise<Manuscript>}
  */
 const getManuscriptByAuthorId = async (authorId) => {
-  return Manuscript.findOne({ author: authorId }).populate();
+  return Manuscript.findOne({ author: authorId }).populate('reviewers').populate('author');
 };
 
 /**

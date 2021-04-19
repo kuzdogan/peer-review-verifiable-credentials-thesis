@@ -35,7 +35,7 @@ const updateManuscript = {
     .keys({
       author: Joi.string().custom(objectId),
       reviewers: Joi.array().items(Joi.string().custom(objectId)),
-      title: Joi.string().required(),
+      title: Joi.string(),
       abstract: Joi.string(),
       content: Joi.string(),
       submissionDate: Joi.date(),
