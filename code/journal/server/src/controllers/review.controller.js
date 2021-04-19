@@ -10,7 +10,7 @@ const createReview = catchAsync(async (req, res) => {
 });
 
 const getReviews = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['reviewer']);
+  const filter = pick(req.query, ['reviewers']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await reviewService.queryReviews(filter, options);
   res.send(result);

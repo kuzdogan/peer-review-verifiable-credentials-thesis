@@ -17,6 +17,7 @@ const getManuscripts = {
   query: Joi.object().keys({
     author: Joi.string().custom(objectId),
     status: Joi.string().custom(statusType),
+    reviewers: Joi.string().custom(objectId),
     populate: Joi.string(),
   }),
 };

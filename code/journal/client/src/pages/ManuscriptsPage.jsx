@@ -25,6 +25,7 @@ const ManuscriptsPage = () => {
           </button>
         </Link>
       </div>
+      <div className='my-4 ml-4 text-lg font-bold'>Your Manuscripts</div>
       {manuscripts.length === 0 ? (
         <div className='flex flex-col flex-1 text-center justify-center'>
           <div>You don&apos;t have any manuscripts</div>

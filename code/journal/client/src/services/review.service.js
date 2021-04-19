@@ -7,4 +7,4 @@ export const createReview = (review) => axios.post(`${API_URL}`, { review }, { h
 
 export const readReview = (reviewId) => axios.get(`${API_URL}/${reviewId}`, { headers: authHeader() });
 
-export const readReviews = (filter) => axios.get(`${API_URL}`, { headers: authHeader(), params: filter });
+export const readReviews = (queryObj) => axios.get(`${API_URL}`, { headers: authHeader(), params: queryObj });
