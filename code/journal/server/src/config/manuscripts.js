@@ -4,6 +4,7 @@ const status = {
   MINOR_REVISION: 'Minor Revision',
   MAJOR_REVISION: 'Major Revision',
   REJECTED: 'Rejected',
+  ACCEPTED: 'Accepted',
 };
 
 module.exports = {
