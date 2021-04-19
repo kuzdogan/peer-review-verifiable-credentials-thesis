@@ -28,7 +28,7 @@ export const assignReviewersToManuscript = (manuscript, newReviewerIds) => {
   const reviewersIds = manuscript.reviewers.map((reviewer) => reviewer.id);
   return axios.patch(
     `${API_URL}/${manuscript.id}`,
-    { reviewers: [...reviewersIds, ...newReviewerIds] },
+    { reviewers: [...reviewersIds, ...newReviewerIds], status: 'In Review' },
     { headers: authHeader() }
   );
 };
