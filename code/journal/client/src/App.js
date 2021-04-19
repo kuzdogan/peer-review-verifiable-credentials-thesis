@@ -6,9 +6,13 @@ import PrivateRoute from './components/PrivateRoute';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import ManageReviewsPage from './pages/ManageReviewsPage';
 import ManuscriptsPage from './pages/ManuscriptsPage';
+import ManuscriptViewPage from './pages/ManuscriptViewPage';
 import RegisterPage from './pages/RegisterPage';
 import ReviewsPage from './pages/ReviewsPage';
+import StartReviewsPage from './pages/StartReviewsPage';
+import StartSingleReviewPage from './pages/StartSingleReviewPage';
 import SubmitManuscriptPage from './pages/SubmitManuscriptPage';
 import { isLoggedIn } from './services/auth.service';
 import UserContext from './UserContext';
@@ -27,8 +31,12 @@ function App() {
             <Route exact path='/register' component={RegisterPage} />
             <PrivateRoute exact path={['/', '/home']} component={Home} />
             <PrivateRoute exact path='/reviews' component={ReviewsPage} />
+            <PrivateRoute exact path='/reviews/manage' component={ManageReviewsPage} />
+            <PrivateRoute exact path='/reviews/manage/startReview' component={StartReviewsPage} />
+            <PrivateRoute exact path='/reviews/manage/startReview/:id' component={StartSingleReviewPage} />
             <PrivateRoute exact path='/manuscripts' component={ManuscriptsPage} />
             <PrivateRoute exact path='/manuscripts/submit' component={SubmitManuscriptPage} />
+            <PrivateRoute path='/manuscripts/:id' component={ManuscriptViewPage} />
           </Switch>
         </div>
       </div>

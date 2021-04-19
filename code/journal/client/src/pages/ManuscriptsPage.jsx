@@ -6,7 +6,7 @@ import { readOwnManuscripts } from '../services/manuscript.service';
 const ManuscriptsPage = () => {
   const [manuscripts, setManuscripts] = useState(null);
   useEffect(() => {
-    readOwnManuscripts().then((response) => setManuscripts(response.data.results));
+    readOwnManuscripts().then((data) => setManuscripts(data.results));
   }, []);
 
   if (!manuscripts) {
@@ -27,7 +27,7 @@ const ManuscriptsPage = () => {
       </div>
       {manuscripts.length === 0 ? (
         <div className='flex flex-col flex-1 text-center justify-center'>
-          <div>You don't have any manuscripts</div>
+          <div>You don&apos;t have any manuscripts</div>
         </div>
       ) : (
         manuscripts.map((manuscript) => <ManuscriptCard manuscript={manuscript} key={manuscript.id} />)
