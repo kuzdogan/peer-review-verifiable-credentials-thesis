@@ -14,6 +14,8 @@ import ReviewsPage from './pages/ReviewsPage';
 import StartReviewsPage from './pages/StartReviewsPage';
 import StartSingleReviewPage from './pages/StartSingleReviewPage';
 import SubmitManuscriptPage from './pages/SubmitManuscriptPage';
+import ViewReviewPage from './pages/ViewReviewPage';
+import WriteReviewPage from './pages/WriteReviewpage';
 import { isLoggedIn } from './services/auth.service';
 import UserContext from './UserContext';
 
@@ -22,9 +24,9 @@ function App() {
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
-      <div className='flex flex-row'>
+      <div className='flex flex-col md:flex-row'>
         {isLoggedIn() ? <Sidebar /> : null}
-        <div className='h-screen w-full bg-gray-50 flex flex-col flex-1'>
+        <div className='ml-64 bg-gray-50 flex flex-col flex-1'>
           <PageTitle />
           <Switch>
             <Route exact path='/login' component={LoginPage} />
@@ -34,6 +36,8 @@ function App() {
             <PrivateRoute exact path='/reviews/manage' component={ManageReviewsPage} />
             <PrivateRoute exact path='/reviews/manage/startReview' component={StartReviewsPage} />
             <PrivateRoute exact path='/reviews/manage/startReview/:id' component={StartSingleReviewPage} />
+            <PrivateRoute exact path='/reviews/write/:manuscriptId' component={WriteReviewPage} />
+            <PrivateRoute exact path='/reviews/:reviewId' component={ViewReviewPage} />
             <PrivateRoute exact path='/manuscripts' component={ManuscriptsPage} />
             <PrivateRoute exact path='/manuscripts/submit' component={SubmitManuscriptPage} />
             <PrivateRoute path='/manuscripts/:id' component={ManuscriptViewPage} />

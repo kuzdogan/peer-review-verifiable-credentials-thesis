@@ -13,7 +13,7 @@ export default function Navbar() {
   const highlightActive = (path) => (isActive(path) ? 'bg-gray-200' : null);
 
   return (
-    <div className='flex flex-col w-64 h-screen py-8 bg-white border-r'>
+    <div className='flex flex-col md:w-64 md:h-screen py-8 bg-white border-r md:fixed md:w-64'>
       <h2 className='text-3xl font-semibold text-center text-gray-800'>Journal X</h2>
 
       <div className='flex flex-col items-center mt-6 -mx-2'>

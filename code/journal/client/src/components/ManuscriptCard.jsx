@@ -1,7 +1,7 @@
 import moment from 'moment';
 import React from 'react';
 
-const ManuscriptCard = ({ manuscript }) => {
+const ManuscriptCard = ({ manuscript, actionButton }) => {
   const { title, submissionDate, abstract, author, id, status } = manuscript;
 
   const renderStatus = () => {
@@ -36,6 +36,7 @@ const ManuscriptCard = ({ manuscript }) => {
         <p className='text-gray-400 text-sm mb-4'>{abstract}</p>
       </div>
       <div className='flex flex-wrap items-center gap-4'>{renderStatus(status)}</div>
+      <div className='flex flex-wrap flex-row-reverse items-center gap-4'>{actionButton}</div>
     </div>
   );
 };
