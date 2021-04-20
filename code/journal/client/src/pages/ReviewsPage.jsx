@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AiFillFileAdd } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import ManuscriptCard from '../components/ManuscriptCard';
+import ReviewCard from '../components/ReviewCard';
 import { readManuscripts } from '../services/manuscript.service';
+import { readReviews } from '../services/review.service';
 import UserContext from '../UserContext';
 
 const ReviewsPage = () => {
@@ -12,10 +14,11 @@ const ReviewsPage = () => {
 
   useEffect(() => {
     readManuscripts({ reviewers: user.id, status: 'In Review' }).then((res) => setAssignedReviews(res.results));
+    readReviews({ reviewer: user.id }).then((data) => setDoneReviews(data.results));
   }, []);
   return (
     <div className='flex flex-col flex-1 mx-8'>
-      <div className='text-lg font-bold'>Assigned Reviews</div>
+      <div className='text-xl font-bold'>Assigned Reviews</div>
       {assignedReviews
         ? assignedReviews.map((manuscript, i) => (
           <ManuscriptCard
@@ -25,7 +28,14 @@ const ReviewsPage = () => {
           />
         ))
         : 'Loading'}
-      <div className='text-lg font-bold'>Reviews done by you</div>
+      <div className='text-xl font-bold mt-8'>Reviews done by you</div>
+      {doneReviews
+        ? doneReviews.map((review, i) => (
+          <Link to={`/reviews/${review.id}`} className='my-8 mx-4'>
+            <ReviewCard key={`done-reviews-${i}`} review={{ content: `${review.content.substring(0, 50)}...`, ...review }} />
+          </Link>
+        ))
+        : 'Loading'}
     </div>
   );
 };
