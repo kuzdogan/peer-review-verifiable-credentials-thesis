@@ -1,4 +1,5 @@
-const { status } = require('../config/manuscripts');
+const { manuscriptStatuses } = require('../config/manuscripts');
+const { reviewTaskStatuses, reviewTaskResponses } = require('../config/reviewTasks');
 const { recommendationTypes } = require('../config/reviews');
 
 const objectId = (value, helpers) => {
@@ -25,16 +26,32 @@ const recommendationType = (value, helpers) => {
   return helpers.message('incorrect review reccomentation type');
 };
 
-const statusType = (value, helpers) => {
-  if (Object.values(status).includes(value)) {
+const manuscriptStatusType = (value, helpers) => {
+  if (Object.values(manuscriptStatuses).includes(value)) {
     return value;
   }
   return helpers.message('incorrect manuscript status type');
+};
+
+const reviewTaskStatusType = (value, helpers) => {
+  if (Object.values(reviewTaskStatuses).includes(value)) {
+    return value;
+  }
+  return helpers.message('incorrect review task status type');
+};
+
+const reviewTaskResponseType = (value, helpers) => {
+  if (Object.values(reviewTaskResponses).includes(value)) {
+    return value;
+  }
+  return helpers.message('incorrect review task response type');
 };
 
 module.exports = {
   objectId,
   password,
   recommendationType,
-  statusType,
+  manuscriptStatusType,
+  reviewTaskStatusType,
+  reviewTaskResponseType,
 };

@@ -14,7 +14,6 @@ export default function SubmitManuscriptPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ title, abstract, content });
 
     createManuscript({ title, abstract, content }).then(console.log);
   };

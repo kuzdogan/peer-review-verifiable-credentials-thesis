@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { toJSON, paginate } = require('./plugins');
-const { status } = require('../config/manuscripts');
+const { manuscriptStatuses } = require('../config/manuscripts');
 
 const manuscriptSchema = mongoose.Schema(
   {
@@ -38,9 +38,9 @@ const manuscriptSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: status,
+      enum: manuscriptStatuses,
       required: true,
-      default: status.PENDING,
+      default: manuscriptStatuses.PENDING,
     },
   },
   {

@@ -1,4 +1,4 @@
-const status = {
+const manuscriptStatuses = {
   PENDING: 'Pending',
   IN_REVIEW: 'In Review',
   MINOR_REVISION: 'Minor Revision',
@@ -8,5 +8,5 @@ const status = {
 };
 
 module.exports = {
-  status,
+  manuscriptStatuses,
 };

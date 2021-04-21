@@ -14,6 +14,11 @@ const reviewSchema = mongoose.Schema(
       ref: 'Manuscript',
       required: true,
     },
+    reviewTask: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'ReviewTask',
+      required: true,
+    },
     content: {
       type: String,
       required: true,

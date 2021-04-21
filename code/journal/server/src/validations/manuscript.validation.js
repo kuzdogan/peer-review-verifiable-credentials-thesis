@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { objectId, statusType } = require('./custom.validation');
+const { objectId, manuscriptStatusType } = require('./custom.validation');
 
 const createManuscript = {
   body: Joi.object().keys({
@@ -9,14 +9,14 @@ const createManuscript = {
     abstract: Joi.string().required(),
     content: Joi.string().required(),
     submissionDate: Joi.date(),
-    status: Joi.string().custom(statusType),
+    status: Joi.string().custom(manuscriptStatusType),
   }),
 };
 
 const getManuscripts = {
   query: Joi.object().keys({
     author: Joi.string().custom(objectId),
-    status: Joi.string().custom(statusType),
+    status: Joi.string().custom(manuscriptStatusType),
     reviewers: Joi.string().custom(objectId),
     populate: Joi.string(),
   }),
@@ -40,7 +40,7 @@ const updateManuscript = {
       abstract: Joi.string(),
       content: Joi.string(),
       submissionDate: Joi.date(),
-      status: Joi.string().custom(statusType),
+      status: Joi.string().custom(manuscriptStatusType),
     })
     .min(1),
 };
