@@ -4,6 +4,7 @@ import { AiFillFileAdd } from 'react-icons/ai';
 import { BiLinkExternal } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
 import UserContext from '../UserContext';
+import ReviewStatusBadge from './ReviewStatusBadge';
 
 const WriteReviewButton = ({ onClick, reviewTaskId }) => (
   <Link className='' to={`reviews/write/${reviewTaskId}`}>
@@ -17,21 +18,6 @@ const WriteReviewButton = ({ onClick, reviewTaskId }) => (
     </button>
   </Link>
 );
-
-const renderStatus = (status) => {
-  switch (status) {
-    case 'Proposed':
-      return <span className='px-4 py-2 ml-auto text-base rounded-full text-yellow-600  bg-yellow-200 '>Proposed</span>;
-    case 'Accepted & In Review':
-      return <span className='px-4 py-2 ml-auto text-base rounded-full text-blue-600  bg-blue-200 '>In Review</span>;
-    case 'Submitted':
-      return <span className='px-4 py-2 ml-auto text-base rounded-full text-green-600  bg-green-200 '>Submitted</span>;
-    case 'Rejected':
-      return <span className='px-4 py-2 ml-auto text-base rounded-full text-red-600  bg-red-200 '>Rejected</span>;
-    default:
-      return null;
-  }
-};
 
 const ReviewTaskCard = ({ reviewTask }) => {
   const { manuscript, reviewer, review } = reviewTask;
@@ -57,7 +43,7 @@ const ReviewTaskCard = ({ reviewTask }) => {
         ) : (
           user.id === reviewTask.reviewer && <WriteReviewButton reviewTaskId={reviewTask.id} />
         )}
-        {renderStatus(reviewTask.status)}
+        <ReviewStatusBadge status={reviewTask.status} />
       </div>
     </div>
   );

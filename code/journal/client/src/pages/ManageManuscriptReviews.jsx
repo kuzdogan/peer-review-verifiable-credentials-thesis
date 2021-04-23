@@ -9,6 +9,7 @@ import { Link, useParams } from 'react-router-dom';
 import DropdownSelect from '../components/DropdownSelect';
 import ManuscriptCard from '../components/ManuscriptCard';
 import ManuscriptStatusBadge from '../components/ManuscriptStatusBadge';
+import ReviewStatusBadge from '../components/ReviewStatusBadge';
 import { readManuscript, updateManuscript } from '../services/manuscript.service';
 import { createReviewTask, readReviewTask } from '../services/reviewTask.service';
 import UserContext from '../UserContext';
@@ -130,26 +131,28 @@ const ManageManuscriptReviews = () => {
         <div>
           <span className='text-lg font-bold'>Assigned Reviewers: </span>
         </div>
-        <div>
-          <table className='w-full'>
+        <div className='my-4 shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
+          <table className='w-full table-auto divide-y divide-gray-200'>
             {reviewTasksPopulated && (
-              <tr className='text-left'>
-                <th>Name</th>
-                <th>Task Id</th>
-                <th>Deadline</th>
-                <th>Status</th>
-                <th className='text-center'>Review Link</th>
+              <tr className='text-left uppercase bg-gray-100 text-gray-600'>
+                <th className='py-3 px-6'>Name</th>
+                <th className='py-3 px-6'>Task Id</th>
+                <th className='py-3 px-6'>Deadline</th>
+                <th className='py-3 px-6 text-center'>Status</th>
+                <th className='text-center py-3 px-6'>Review Link</th>
               </tr>
             )}
             {reviewTasksPopulated &&
               reviewTasksPopulated.map((reviewTask, i) => (
                 <tr>
                   {' '}
-                  <td>{reviewTask.reviewer.name}</td>
-                  <td>{reviewTask.id}</td>
-                  <td>{moment(reviewTask.deadline).format('DD MMM YYYY')}</td>
-                  <td>{reviewTask.status}</td>
-                  <td>
+                  <td className='py-3 px-6'>{reviewTask.reviewer.name}</td>
+                  <td className='py-3 px-6'>{reviewTask.id}</td>
+                  <td className='py-3 px-6'>{moment(reviewTask.deadline).format('DD MMM YYYY')}</td>
+                  <td className='py-3 px-6 text-center'>
+                    <ReviewStatusBadge small status={reviewTask.status} />
+                  </td>
+                  <td className='py-3 px-6'>
                     {reviewTask.review && (
                       <Link
                         className='font-bold  hover:bg-white hover:text-black hover:underline flex items-center mr-2'
