@@ -14,6 +14,7 @@ const getReviewTasks = {
     reviewer: Joi.string().custom(objectId),
     manuscript: Joi.string().custom(objectId),
     status: Joi.string().custom(reviewTaskStatusType),
+    populate: Joi.string(),
   }),
 };
 

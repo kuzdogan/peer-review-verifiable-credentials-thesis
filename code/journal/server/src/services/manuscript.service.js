@@ -1,4 +1,5 @@
 const httpStatus = require('http-status');
+const { manuscriptStatuses } = require('../config/manuscripts');
 const { Manuscript } = require('../models');
 const ApiError = require('../utils/ApiError');
 
@@ -32,7 +33,7 @@ const queryManuscripts = async (filter, options) => {
  * @returns {Promise<Manuscript>}
  */
 const getManuscriptById = async (id) => {
-  return Manuscript.findById(id).populate('reviewers').populate('author');
+  return Manuscript.findById(id).populate('reviews').populate('author').populate('reviewTasks');
 };
 
 /**
@@ -74,6 +75,19 @@ const deleteManuscriptById = async (manuscriptId) => {
   return manuscript;
 };
 
+const appendReviewTasksToManuscript = async (manuscriptId, reviewTaskId) => {
+  const manuscript = await getManuscriptById(manuscriptId);
+  if (!manuscript) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Manuscript not found');
+  }
+  manuscript.reviewTasks.push(reviewTaskId);
+  if (manuscript.status === manuscriptStatuses.PENDING) {
+    manuscript.status = manuscriptStatuses.IN_REVIEW;
+  }
+  await manuscript.save();
+  return manuscript;
+};
+
 module.exports = {
   createManuscript,
   queryManuscripts,
@@ -81,4 +95,5 @@ module.exports = {
   getManuscriptByAuthorId,
   updateManuscriptById,
   deleteManuscriptById,
+  appendReviewTasksToManuscript,
 };

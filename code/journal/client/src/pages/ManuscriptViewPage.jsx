@@ -9,7 +9,7 @@ const ManuscriptViewPage = () => {
 
   useEffect(() => {
     readManuscript(id).then((data) => setManuscript(data));
-  }, [manuscript]);
+  }, []);
 
   if (!manuscript) {
     return 'Loading';
@@ -17,7 +17,7 @@ const ManuscriptViewPage = () => {
 
   return (
     <div>
-      <ManuscriptCard manuscript={manuscript} />
+      <ManuscriptCard manuscript={manuscript} content={manuscript.content} />
     </div>
   );
 };

@@ -21,7 +21,7 @@ const StartReviewsPage = () => {
       {pendingManuscripts.map((manuscript) => {
         const { abstract, ...tempManuscript } = manuscript;
         return (
-          <Link to={`/reviews/manage/startReview/${manuscript.id}`} className='w-full h-full block'>
+          <Link to={`/manuscripts/${manuscript.id}/manageReviews`} className='w-full h-full block'>
             <ManuscriptCard manuscript={tempManuscript} />
           </Link>
         );

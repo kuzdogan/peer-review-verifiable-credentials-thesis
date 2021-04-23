@@ -9,8 +9,8 @@ const manuscriptSchema = mongoose.Schema(
       ref: 'User',
       required: true,
     },
-    reviewers: {
-      type: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'User' }],
+    reviewTasks: {
+      type: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'ReviewTask' }],
       default: [],
       required: true,
     },

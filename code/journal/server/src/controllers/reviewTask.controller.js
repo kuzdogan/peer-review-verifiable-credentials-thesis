@@ -2,12 +2,13 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { reviewTaskService } = require('../services');
+const { reviewTaskService, manuscriptService } = require('../services');
 const { reviewTaskResponses, reviewTaskStatuses } = require('../config/reviewTasks');
 const { reviewService } = require('../services');
 
 const createReviewTask = catchAsync(async (req, res) => {
   const reviewTask = await reviewTaskService.createReviewTask(req.body);
+  await manuscriptService.appendReviewTasksToManuscript(reviewTask.manuscript, reviewTask.id);
   res.status(httpStatus.CREATED).send(reviewTask);
 });
 

@@ -50,5 +50,12 @@ const ManuscriptsBeingReviewed = ({ manuscripts }) => {
       </div>
     );
   }
-  return manuscripts.map((manuscript, i) => <ManuscriptCard manuscript={manuscript} key={`manuscript-in-review${i}`} />);
+  return manuscripts.map((manuscript, i) => {
+    const { abstract, ...withoutAbstract } = manuscript;
+    return (
+      <Link to={`/manuscripts/${manuscript.id}/manageReviews`}>
+        <ManuscriptCard manuscript={withoutAbstract} key={`manuscript-in-review${i}`} />
+      </Link>
+    );
+  });
 };

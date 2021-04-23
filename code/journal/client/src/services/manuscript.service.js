@@ -32,3 +32,6 @@ export const assignReviewersToManuscript = (manuscript, newReviewerIds) => {
     { headers: authHeader() }
   );
 };
+
+export const updateManuscript = (id, updateBody) =>
+  axios.patch(`${API_URL}/${id}`, updateBody, { headers: authHeader() }).then((response) => response.data);

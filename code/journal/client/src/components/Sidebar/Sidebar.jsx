@@ -20,6 +20,9 @@ export default function Navbar() {
         <img className='object-cover w-24 h-24 mx-2 rounded-full' src={userIcon} alt='avatar' />
         <h4 className='mx-2 mt-2 font-medium text-gray-800 hover:underline'>{user.name}</h4>
         <p className='mx-2 mt-1 text-sm font-medium text-gray-600 hover:underline'>{user.email}</p>
+        <p className='mx-2 mt-1 text-sm font-medium text-gray-600 hover:underline'>
+          {user.role === 'user' ? 'Author' : 'Editor'}
+        </p>
       </div>
 
       <div className='flex flex-col justify-between flex-1 mt-6'>

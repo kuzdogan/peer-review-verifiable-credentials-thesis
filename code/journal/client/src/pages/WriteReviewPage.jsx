@@ -5,7 +5,7 @@ import DropdownSelect from '../components/DropdownSelect';
 import { createReview } from '../services/review.service';
 
 const WriteReviewPage = () => {
-  const { manuscriptId } = useParams();
+  const { reviewTaskId } = useParams();
   const [content, setContent] = useState();
   const [recommendation, setRecommendation] = useState('Accept');
   const history = useHistory();
@@ -20,14 +20,12 @@ const WriteReviewPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createReview({ manuscript: manuscriptId, content, recommendation }).then((res) =>
-      res.status === 201 ? history.push(`/reviews/${res.data.id}`) : alert('Review Submit Failed')
-    );
+    createReview({ reviewTask: reviewTaskId, content, recommendation }).then((review) => history.push(`/reviews/${review.id}`));
   };
 
   return (
     <div className='bg-white rounded-lg shadow-lg flex flex-col m-8 p-12'>
-      <div className='text-lg font-bold'>Write review for {manuscriptId}</div>
+      <div className='text-lg font-bold'>Write review for the task {reviewTaskId}</div>
       <form className='mt-8' onSubmit={handleSubmit}>
         <div className='text-gray-800'>Content</div>
         <textarea

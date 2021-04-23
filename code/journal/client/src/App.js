@@ -6,16 +6,16 @@ import PrivateRoute from './components/PrivateRoute';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import ManageManuscriptReviews from './pages/ManageManuscriptReviews';
 import ManageReviewsPage from './pages/ManageReviewsPage';
 import ManuscriptsPage from './pages/ManuscriptsPage';
 import ManuscriptViewPage from './pages/ManuscriptViewPage';
 import RegisterPage from './pages/RegisterPage';
 import ReviewsPage from './pages/ReviewsPage';
 import StartReviewsPage from './pages/StartReviewsPage';
-import StartSingleReviewPage from './pages/StartSingleReviewPage';
 import SubmitManuscriptPage from './pages/SubmitManuscriptPage';
 import ViewReviewPage from './pages/ViewReviewPage';
-import WriteReviewPage from './pages/WriteReviewpage';
+import WriteReviewPage from './pages/WriteReviewPage';
 import { isLoggedIn } from './services/auth.service';
 import UserContext from './UserContext';
 
@@ -35,12 +35,12 @@ function App() {
             <PrivateRoute exact path='/reviews' component={ReviewsPage} />
             <PrivateRoute exact path='/reviews/manage' component={ManageReviewsPage} />
             <PrivateRoute exact path='/reviews/manage/startReview' component={StartReviewsPage} />
-            <PrivateRoute exact path='/reviews/manage/startReview/:id' component={StartSingleReviewPage} />
-            <PrivateRoute exact path='/reviews/write/:manuscriptId' component={WriteReviewPage} />
+            <PrivateRoute exact path='/reviews/write/:reviewTaskId' component={WriteReviewPage} />
             <PrivateRoute exact path='/reviews/:reviewId' component={ViewReviewPage} />
             <PrivateRoute exact path='/manuscripts' component={ManuscriptsPage} />
             <PrivateRoute exact path='/manuscripts/submit' component={SubmitManuscriptPage} />
-            <PrivateRoute path='/manuscripts/:id' component={ManuscriptViewPage} />
+            <PrivateRoute exact path='/manuscripts/:id/manageReviews' component={ManageManuscriptReviews} />
+            <PrivateRoute exact path='/manuscripts/:id' component={ManuscriptViewPage} />
           </Switch>
         </div>
       </div>

@@ -10,7 +10,7 @@ const createManuscript = catchAsync(async (req, res) => {
 });
 
 const getManuscripts = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['author', 'status', 'reviewers']);
+  const filter = pick(req.query, ['author', 'status']);
   const options = pick(req.query, ['sortBy', 'limit', 'page', 'populate']);
   const result = await manuscriptService.queryManuscripts(filter, options);
   res.send(result);

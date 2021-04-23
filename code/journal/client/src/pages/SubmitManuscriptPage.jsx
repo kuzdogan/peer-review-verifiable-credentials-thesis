@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { AiFillFileAdd } from 'react-icons/ai';
+import { useHistory } from 'react-router-dom';
 import { createManuscript } from '../services/manuscript.service';
 
 export default function SubmitManuscriptPage() {
   const [title, setTitle] = useState();
   const [abstract, setAbstract] = useState();
   const [content, setContent] = useState();
+  const history = useHistory();
 
   const handleTitleChange = (e) => setTitle(e.target.value);
 
@@ -15,7 +18,14 @@ export default function SubmitManuscriptPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createManuscript({ title, abstract, content }).then(console.log);
+    createManuscript({ title, abstract, content }).then((res) => {
+      if (res.status === 201) {
+        history.push(`/manuscripts/${res.data.id}`);
+      } else {
+        alert('An error occured');
+        console.log(res);
+      }
+    });
   };
 
   return (
@@ -80,9 +90,9 @@ export default function SubmitManuscriptPage() {
           <div className='w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3'>
             <button
               type='submit'
-              className='py-2 px-4  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '
+              className='py-2 px-4 flex justify-center items-center  w-full bg-green-600 hover:bg-green-700 focus:ring-red-500 focus:ring-offset-red-200 text-white transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '
             >
-              Save
+              <AiFillFileAdd className='mr-2' /> Submit
             </button>
           </div>
         </div>
