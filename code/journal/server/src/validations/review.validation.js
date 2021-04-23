@@ -12,6 +12,7 @@ const createReview = {
 
 const getReviews = {
   query: Joi.object().keys({
+    populate: Joi.string(),
     reviewer: Joi.string().custom(objectId),
     manuscript: Joi.string().custom(objectId),
     sortBy: Joi.string(),

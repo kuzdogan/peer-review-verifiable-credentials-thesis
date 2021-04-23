@@ -138,7 +138,7 @@ const ManageManuscriptReviews = () => {
                 <th className='py-3 px-6'>Name</th>
                 <th className='py-3 px-6'>Task Id</th>
                 <th className='py-3 px-6'>Deadline</th>
-                <th className='py-3 px-6 text-center'>Status</th>
+                <th className='py-3 px-6 text-center'>Task Status</th>
                 <th className='text-center py-3 px-6'>Review Link</th>
               </tr>
             )}

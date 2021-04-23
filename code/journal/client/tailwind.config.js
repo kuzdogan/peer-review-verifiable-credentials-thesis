@@ -1,3 +1,6 @@
+const colors = require('tailwindcss/colors');
+const { colors: defaultColors } = require('tailwindcss/defaultTheme');
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
@@ -11,6 +14,11 @@ module.exports = {
       64: '64rem',
       128: '128rem',
       full: '100%',
+    },
+    colors: {
+      ...defaultColors,
+      yellow: colors.yellow,
+      orange: colors.orange,
     },
   },
   variants: {

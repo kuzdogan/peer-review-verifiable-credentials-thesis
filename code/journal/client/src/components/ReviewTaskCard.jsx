@@ -22,6 +22,8 @@ const WriteReviewButton = ({ onClick, reviewTaskId }) => (
 const ReviewTaskCard = ({ reviewTask }) => {
   const { manuscript, reviewer, review } = reviewTask;
   const { user } = useContext(UserContext);
+  console.log(user);
+  console.log(reviewTask.reviewer);
   return (
     <div className='shadow-lg rounded-xl p-4 bg-white relative overflow-hidden m-4 min-w-full'>
       <div className='w-full'>
@@ -41,7 +43,7 @@ const ReviewTaskCard = ({ reviewTask }) => {
             {moment(review.completedDate).format('DD MMM YYYY')}
           </div>
         ) : (
-          user.id === reviewTask.reviewer && <WriteReviewButton reviewTaskId={reviewTask.id} />
+          user.id === reviewTask.reviewer.id && <WriteReviewButton reviewTaskId={reviewTask.id} />
         )}
         <ReviewStatusBadge status={reviewTask.status} />
       </div>

@@ -15,7 +15,7 @@ const ViewReviewPage = () => {
     return <div>Loading {reviewId}</div>;
   }
   return (
-    <div>
+    <div className='flex flex-col flex-1 mx-8'>
       <ReviewCard review={review} />
     </div>
   );

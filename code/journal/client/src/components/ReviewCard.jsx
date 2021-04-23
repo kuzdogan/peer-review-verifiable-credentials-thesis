@@ -5,9 +5,9 @@ const ReviewCard = ({ review }) => (
     <div className='text-xl font-bold'>Review {review.id}</div>
     <div className='mt-4'>
       <div className='text-gray-800 mt-4 font-bold'>Reviewer</div>
-      <div>{review.reviewer}</div>
+      <div>{review.reviewer.name}</div>
       <div className='text-gray-800 mt-4 font-bold'>Manuscript</div>
-      <div>{review.manuscript}</div>
+      <div>{review.manuscript.title}</div>
       {review.content && (
         <div>
           <div className='text-gray-800 mt-4 font-bold'>Content</div>

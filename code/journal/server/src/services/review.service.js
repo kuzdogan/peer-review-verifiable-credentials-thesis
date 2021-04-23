@@ -36,6 +36,10 @@ const queryReviews = async (filter, options) => {
  * @returns {Promise<Review>}
  */
 const getReviewById = async (id) => {
+  return Review.findById(id).populate('reviewer').populate('manuscript');
+};
+
+const getReviewByIdUnpopulated = async (id) => {
   return Review.findById(id);
 };
 
@@ -82,6 +86,7 @@ module.exports = {
   createReview,
   queryReviews,
   getReviewById,
+  getReviewByIdUnpopulated,
   getReviewByReviewerId,
   updateReviewById,
   deleteReviewById,
