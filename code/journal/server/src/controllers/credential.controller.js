@@ -8,7 +8,8 @@ const getCredential = catchAsync(async (req, res) => {
   if (!credential) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Credential not found');
   }
-  res.send(credential);
+  res.set('Content-disposition', `attachment; filename=${req.params.reviewId}.json`);
+  res.json(credential);
 });
 
 module.exports = { getCredential };

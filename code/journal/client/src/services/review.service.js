@@ -9,3 +9,6 @@ export const readReview = (reviewId) => axios.get(`${API_URL}/${reviewId}`, { he
 
 export const readReviews = (queryObj) =>
   axios.get(`${API_URL}`, { headers: authHeader(), params: queryObj }).then((res) => res.data);
+
+export const issueCredential = (reviewId) =>
+  axios.get(`${API_URL}/credential/${reviewId}`, { headers: authHeader() }).then((res) => res.data);
