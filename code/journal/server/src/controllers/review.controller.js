@@ -24,7 +24,6 @@ const getReviews = catchAsync(async (req, res) => {
 });
 
 const getReview = catchAsync(async (req, res) => {
-  ``;
   const review = await reviewService.getReviewById(req.params.reviewId);
   if (!review) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Review not found');
