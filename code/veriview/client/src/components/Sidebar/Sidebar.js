@@ -3,6 +3,7 @@ import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 import React from "react";
 import { Link } from "react-router-dom";
+import { logout } from '../../services/auth.service';
 
 
 export default function Sidebar() {
@@ -169,6 +170,13 @@ export default function Sidebar() {
               </li>
             </ul>
           </div>
+          <button
+            className='flex justify-center align-self-end px-4 py-2 mx-8 rounded-xl mt-auto text-gray-50 transition-colors duration-200 transform bg-red-400 hover:bg-red-600'
+            href='#'
+            onClick={logout}
+          >
+            <span className='font-medium'>Log Out</span>
+          </button>
         </div>
       </nav>
     </>

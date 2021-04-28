@@ -2,19 +2,22 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 // components
 import AdminNavbar from "components/Navbars/AdminNavbar.js";
 import Sidebar from "components/Sidebar/Sidebar.js";
-import React from "react";
+import React, { useState } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 // views
 import Dashboard from "views/admin/Dashboard.js";
 import Settings from "views/admin/Settings.js";
 import Tables from "views/admin/Tables.js";
 import Profile from "views/Profile";
+import UserContext from '../UserContext';
 
 
 
 export default function Admin() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
   return (
-    <>
+    <UserContext.Provider value={{ user, setUser }}>
       <Sidebar />
       <div className="relative md:ml-64 bg-blueGray-100">
         <AdminNavbar />
@@ -29,6 +32,6 @@ export default function Admin() {
           <FooterAdmin />
         </div>
       </div>
-    </>
+    </UserContext.Provider>
   );
 }
