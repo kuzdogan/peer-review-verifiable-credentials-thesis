@@ -76,12 +76,12 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.7",
-    "eslint": "^7.0.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-config-prettier": "^8.1.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jest": "^24.0.1",
-    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-security": "^1.4.0",
     "faker": "^5.1.0",
     "husky": "^5.1.2",
@@ -89,7 +89,7 @@
     "lint-staged": "^10.0.7",
     "node-mocks-http": "^1.8.0",
     "nodemon": "^2.0.0",
-    "prettier": "^2.0.5",
+    "prettier": "^2.2.1",
     "supertest": "^6.0.1"
   }
 }
