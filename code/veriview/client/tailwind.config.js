@@ -1,6 +1,8 @@
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
+const safeList = [/^-?m(\w?)-/, /^p(\w?)-/, /^text-/, /^bg-/, 'underline'];
+
 module.exports = {
   purge: {
     enabled: true,
@@ -15,7 +17,7 @@ module.exports = {
       './public/*.js',
     ],
     options: {
-      safelist: [],
+      safelist: process.env.NODE_ENV === 'production' ? [] : safeList,
     },
   },
   theme: {

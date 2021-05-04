@@ -23,6 +23,9 @@ module.exports = {
     'import/extensions': 'off',
     'global-require': 'off',
     'no-console': 'off',
+    'no-unused-expressions': 'warn',
+    'no-nested-ternary': 'warn',
+    'import/no-extraneous-dependencies': 'warn',
   },
   settings: {
     'import/resolver': {
