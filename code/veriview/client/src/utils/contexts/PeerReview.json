@@ -1,0 +1,52 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "name": "http://schema.org/name",
+    "description": "http://schema.org/description",
+    "identifier": "http://schema.org/identifier",
+    "image": "http://schema.org/image",
+    "PeerReviewCredential": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewCredential",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "description": "http://schema.org/description",
+        "name": "http://schema.org/name",
+        "identifier": "http://schema.org/identifier"
+      }
+    },
+    "PeerReview": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReview",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "description": "http://schema.org/description",
+        "name": "http://schema.org/name",
+        "identifier": "http://schema.org/identifier",
+        "author": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
+          "@type": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor"
+        },
+        "journal": "https://schema.org/Periodical"
+      }
+    },
+    "PeerReviewAuthor": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "givenName": "https://schema.org/givenName",
+        "familyName": "https://schema.org/familyName",
+        "email": "https://schema.org/email",
+        "identifier": "http://schema.org/identifier"
+      }
+    }
+  }
+}

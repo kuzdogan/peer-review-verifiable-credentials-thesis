@@ -28,6 +28,7 @@ module.exports = {
     'no-nested-ternary': 'warn',
     'import/no-extraneous-dependencies': 'warn',
     'no-param-reassign': 'warn',
+    camelcase: 'off',
   },
   settings: {
     'import/resolver': {

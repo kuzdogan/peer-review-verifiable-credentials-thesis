@@ -18,9 +18,9 @@ export default function Admin() {
   return (
     <UserContext.Provider value={{ user, setUser }}>
       <Sidebar />
-      <div className='relative md:ml-64 bg-blueGray-100 flex-col flex'>
+      <div className='relative md:ml-64 bg-blueGray-100 flex-col flex min-h-screen'>
         <AdminNavbar />
-        <div className='px-4 md:px-10 mx-auto w-full pt-12 flex flex-col flex-1'>
+        <div className='px-4 md:px-10 mx-auto w-full pt-12 flex flex-col flex-1 justify-center'>
           <Switch>
             <Route path='/profile' exact component={Profile} />
             <Route path='/dashboard' exact component={Dashboard} />
@@ -29,8 +29,8 @@ export default function Admin() {
             <Route path='/reviews' exact component={Reviews} />
             <Redirect from='/' to='/dashboard' />
           </Switch>
-          <FooterAdmin />
         </div>
+        <FooterAdmin />
       </div>
     </UserContext.Provider>
   );
