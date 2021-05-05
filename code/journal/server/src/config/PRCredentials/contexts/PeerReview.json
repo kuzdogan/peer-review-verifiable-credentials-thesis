@@ -28,10 +28,7 @@
         "description": "http://schema.org/description",
         "name": "http://schema.org/name",
         "identifier": "http://schema.org/identifier",
-        "author": {
-          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
-          "@type": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor"
-        },
+        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
         "journal": "https://schema.org/Periodical"
       }
     },

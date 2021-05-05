@@ -98,7 +98,7 @@ const AddReview = () => {
       );
       break;
     case 2:
-      renderContent = <DeriveReview review={review} />;
+      renderContent = <DeriveReview review={review} selectedAttributes={selectedAttributes} handlePrevPage={handlePrevPage} />;
       break;
     default:
       renderContent = (
@@ -146,7 +146,7 @@ const ReviewDisplayAndChoose = ({ review, handleNextPage, selectedAttributes, se
       Please select the attributes below you would like to share publicly on your profile{' '}
     </div>
     <div className='mt-4 text-lg font-bold underline'>Credential</div>
-    <ReviewAttribute label='Credential ID' value={review['@id']} />
+    <ReviewAttribute label='Credential ID' value={review.id} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
     <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
@@ -218,7 +218,7 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
     <div className='text-xl mb-2  font-bold text-center'> Derive Peer Review Credential </div>
     <div className='text-sm mb-6 text-center'> A credential will be derived with the following attributes only </div>
     <div className='mt-4 text-lg font-bold underline'>Credential</div>
-    <ReviewAttribute label='Credential ID' value={review['@id']} />
+    <ReviewAttribute label='Credential ID' value={review.id} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
     <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
@@ -242,7 +242,7 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
       {selectedAttributes.author.familyName && (
         <ReviewAttribute label='Family Name' value={review.credentialSubject.author.email} />
       )}
-      {selectedAttributes.name && <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />}
+      {selectedAttributes.author.email && <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />}
     </div>
     <div className='flex mt-4 justify-between'>
       <button
@@ -263,10 +263,9 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
   </div>
 );
 
-const DeriveReview = ({ review }) => {
+const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
   const [derivedProof, setDerivedProof] = useState();
   const [showCode, setShowCode] = useState(false);
-
   const toggleShowCode = () => setShowCode(!showCode);
 
   const downloadCredential = () => {
@@ -276,12 +275,12 @@ const DeriveReview = ({ review }) => {
         type: 'application/json',
       })
     );
-    a.setAttribute('download', `derivedPeerReview.json`);
+    a.setAttribute('download', `derivedPeerReview.jsonld`);
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
   };
-  const revealDocument = {
+  const temp = {
     '@context': [
       'https://www.w3.org/2018/credentials/v1',
       'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json',
@@ -292,10 +291,34 @@ const DeriveReview = ({ review }) => {
       '@explicit': true,
       type: 'PeerReview',
       journal: {},
+      author: {},
     },
   };
 
   useEffect(() => {
+    const { journal, name, author } = selectedAttributes;
+    const revealDocument = {
+      '@context': review['@context'],
+      type: review.type,
+      credentialSubject: {
+        '@explicit': true,
+        type: review.credentialSubject.type,
+        name: name ? {} : null,
+        journal: journal ? {} : null,
+        author:
+          author.id || author.givenName || author.familyName || author.email
+            ? {
+                '@explicit': true,
+                type: 'PeerReviewAuthor',
+                id: author.id ? {} : null,
+                givenName: author.givenName ? {} : null,
+                familyName: author.familyName ? {} : null,
+                email: author.email ? {} : null,
+              }
+            : null,
+      },
+    };
+    console.log(temp);
     selectiveDisclose(review, revealDocument).then((doc) => setDerivedProof(doc));
   }, []);
 
@@ -345,7 +368,8 @@ const DeriveReview = ({ review }) => {
         </SyntaxHighlighter>
       ) : (
         <div>
-          <ReviewAttribute label='Credential ID' value={review['@id']} />
+          <div className='mt-4 text-lg font-bold underline'>Credential</div>
+          <ReviewAttribute label='Credential ID' value={review.id} />
           <ReviewAttribute label='Description' value={review.description} />
           <ReviewAttribute label='Issuer' value={review.issuer} />
           <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
@@ -366,17 +390,21 @@ const DeriveReview = ({ review }) => {
               )}
             </div>
           )}
-          {derivedProof.author && (
+          {derivedProof.credentialSubject.author && (
             <div className=''>
               <div className='mt-4 text-lg font-bold underline'>Review Author</div>
-              {derivedProof.author.id && <ReviewAttribute label='Author ID' value={derivedProof.credentialSubject.author.id} />}
-              {derivedProof.author.givenName && (
+              {derivedProof.credentialSubject.author.id && (
+                <ReviewAttribute label='Author ID' value={derivedProof.credentialSubject.author.id} />
+              )}
+              {derivedProof.credentialSubject.author.givenName && (
                 <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
               )}
-              {derivedProof.author.familyName && (
+              {derivedProof.credentialSubject.author.familyName && (
                 <ReviewAttribute label='Family Name' value={review.credentialSubject.author.email} />
               )}
-              {derivedProof.name && <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />}
+              {derivedProof.credentialSubject.name && (
+                <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />
+              )}
             </div>
           )}
 
@@ -389,6 +417,15 @@ const DeriveReview = ({ review }) => {
           <ReviewAttribute label='Verification Method' value={derivedProof.proof.verificationMethod} />
         </div>
       )}
+      <div className='mt-4'>
+        <button
+          className='bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
+          type='button'
+          onClick={handlePrevPage}
+        >
+          <i className='fas fa-arrow-left' /> Previous
+        </button>
+      </div>
     </div>
   );
 };
