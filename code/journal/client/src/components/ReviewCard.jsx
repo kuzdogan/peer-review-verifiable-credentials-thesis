@@ -14,7 +14,7 @@ const ReviewCard = ({ review }) => {
           type: 'application/json',
         })
       );
-      a.setAttribute('download', `${review.id}.json`);
+      a.setAttribute('download', `${review.id}.jsonld`);
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
