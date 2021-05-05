@@ -24,8 +24,10 @@ module.exports = {
     'global-require': 'off',
     'no-console': 'off',
     'no-unused-expressions': 'warn',
+    'no-unused-vars': 'warn',
     'no-nested-ternary': 'warn',
     'import/no-extraneous-dependencies': 'warn',
+    'no-param-reassign': 'warn',
   },
   settings: {
     'import/resolver': {
