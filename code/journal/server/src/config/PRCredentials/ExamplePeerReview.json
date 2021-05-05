@@ -1,0 +1,25 @@
+{
+  "@context": [
+    "https://www.w3.org/2018/credentials/v1",
+    "https://w3id.org/security/bbs/v1",
+    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json"
+  ],
+  "@id": "http://localhost:3000/v1/auth/reviews/6081dd3371a34040a1f566d7/credential",
+  "type": ["VerifiableCredential", "PeerReviewCredential"],
+  "description": "Peer Review Credential for the article Tourette syndrome research highlights from 2018",
+  "issuer": "did:example:489398593",
+  "issuanceDate": "2021-04-27T16:28:24.923Z",
+  "credentialSubject": {
+    "id": "http://localhost:3000/v1/auth/users/6081dd3371a34040a1f566d7",
+    "type": "PeerReview",
+    "name": "Peer Review: eLabFTW as an Open Science tool to improve the quality and translation of preclinical research",
+    "author": {
+      "type": "PeerReviewAuthor",
+      "id": "http://localhost:3000/v1/auth/users/6081b9218b1a51362888238a",
+      "givenName": "Alice Smith",
+      "familyName": "Alice Smith",
+      "email": "alice@test.com"
+    },
+    "journal": "Journal X"
+  }
+}

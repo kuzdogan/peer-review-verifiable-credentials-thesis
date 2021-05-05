@@ -1,7 +1,7 @@
 {
   "@context": [
     "https://www.w3.org/2018/credentials/v1",
-    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json",
+    "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/journal/server/src/config/PRCredentials/contexts/PeerReview.json",
     "https://w3id.org/security/bbs/v1"
   ],
   "id": "https://peerreview.org/reviews/1234",
@@ -21,5 +21,12 @@
       "email": "marc@lavoie.net"
     },
     "journal": "F1000Research"
+  },
+  "proof": {
+    "type": "BbsBlsSignature2020",
+    "created": "2021-04-01T13:57:17Z",
+    "proofPurpose": "assertionMethod",
+    "proofValue": "lFw2WkAHT8ftumF+WO+lB9KLMD1EptITx9JLSvvV0bdaBZ/gnvl16mbIpfbDQCFmI74zUeA87D3PthnKahrXGLgc3iMd4p81U7fDAglTksYPMXAjjF5Ig4fGsIbE+I3ZoH1oVGQnZ55j7Y9YbtbC0w==",
+    "verificationMethod": "did:example:489398593#test"
   }
 }

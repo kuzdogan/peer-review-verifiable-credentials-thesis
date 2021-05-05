@@ -6,4 +6,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
+  "tailwindCSS.lint.cssConflict": "ignore"
 }
