@@ -58,12 +58,12 @@ async function generateUnsignedCredential(reviewId) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Review not found');
   }
   const jsonld = {
-    '@context': [VC_CONTEXT_URL, BBS_CONTEXT_URL, PEER_REVIEW_CONTEXT_URL],
-    '@id': `${API_URL}/reviews/${review.id}/credential`,
+    '@context': [VC_CONTEXT_URL, PEER_REVIEW_CONTEXT_URL, BBS_CONTEXT_URL],
+    id: `${API_URL}/reviews/${review.id}/credential`,
     type: ['VerifiableCredential', 'PeerReviewCredential'],
-    description: 'Peer Review Credential for the article Tourette syndrome research highlights from 2018',
+    description: 'Peer Review Credential version 0.1',
     issuer: controller.id,
-    issuanceDate: new Date(),
+    issuanceDate: new Date().toISOString(),
     credentialSubject: {
       id: `${API_URL}/users/${review.id}`,
       type: 'PeerReview',
@@ -79,6 +79,7 @@ async function generateUnsignedCredential(reviewId) {
     },
   };
 
+  console.log(jsonld);
   return jsonld;
 }
 
