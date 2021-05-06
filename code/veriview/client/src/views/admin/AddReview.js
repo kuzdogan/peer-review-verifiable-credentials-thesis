@@ -149,7 +149,7 @@ const ReviewDisplayAndChoose = ({ review, handleNextPage, selectedAttributes, se
     <ReviewAttribute label='Credential ID' value={review.id} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
-    <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
+    <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
 
     <hr className='my-2' />
 
@@ -221,7 +221,7 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
     <ReviewAttribute label='Credential ID' value={review.id} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
-    <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
+    <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
 
     <hr className='my-2' />
 
@@ -333,7 +333,7 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
   return (
     <div className='bg-white rounded-lg shadow-md p-12 m-8 w-full h-full'>
       <div className='text-xl mb-2  font-bold text-center'> Selectively Disclosed Peer Review Credential </div>
-      <div className='flex justify-center'>
+      <div className='flex flex-col items-center'>
         <div>
           <button
             className='text-lightBlue-500 bg-transparent border-lightBlue-500 hover:bg-lightBlue-500 hover:text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
@@ -372,7 +372,7 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
           <ReviewAttribute label='Credential ID' value={review.id} />
           <ReviewAttribute label='Description' value={review.description} />
           <ReviewAttribute label='Issuer' value={review.issuer} />
-          <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('YY MMMM YYYY')} />
+          <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
           {derivedProof.credentialSubject && (
             <div className=''>
               <div className='mt-4 text-lg font-bold underline'>Review</div>
