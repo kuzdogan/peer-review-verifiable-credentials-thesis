@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const { toJSON, paginate } = require('./plugins');
 const { roles } = require('../config/roles');
+const { ReviewProof } = require('.');
 
 const userSchema = mongoose.Schema(
   {
@@ -44,6 +45,7 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    reviewProofs: [{ type: mongoose.SchemaTypes.ObjectId, ref: 'ReviewProof', default: [] }],
   },
   {
     timestamps: true,
@@ -81,6 +83,11 @@ userSchema.pre('save', async function (next) {
     user.password = await bcrypt.hash(user.password, 8);
   }
   next();
+});
+
+userSchema.post('remove', (user) => {
+  // doc will be the removed Person document
+  ReviewProof.remove({ _id: { $in: user.reviewProofs } });
 });
 
 /**
