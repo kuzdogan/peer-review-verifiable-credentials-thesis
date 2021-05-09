@@ -1,7 +1,7 @@
 const plugin = require('tailwindcss/plugin');
 const colors = require('tailwindcss/colors');
 
-const safeList = [/(\w?):?w-/, /^-?m(\w?)-/, /^p(\w?)-/, /^text-/, /^bg-/, 'underline'];
+const safeList = [/(\w?):?w-/, /^-?m(\w?)-/, /^p(\w?)-/, /^text-/, /^bg-/, 'underline', /^cursor-/];
 
 module.exports = {
   purge: {

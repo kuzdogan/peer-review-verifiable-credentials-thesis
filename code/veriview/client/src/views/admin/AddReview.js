@@ -6,6 +6,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { sunburst } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import colors from 'tailwindcss/colors';
 import { selectiveDisclose } from 'utils/deriveProof';
+import { createReviewProof } from '../../services/reviewProof.service';
 
 const AddReview = () => {
   const inputFile = useRef(null);
@@ -263,10 +264,37 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
   </div>
 );
 
+const SubmitButton = ({ isLoading, handleSubmit }) => (
+  <button
+    className={`${
+      isLoading ? 'bg-lightBlue-300' : 'bg-lightBlue-500'
+    } text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded ${
+      isLoading ? null : 'shadow'
+    } hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 flex items-center justify-center w-52`}
+    type='button'
+    onClick={handleSubmit}
+  >
+    {isLoading
+      ? [<Loader type='Oval' color='white' height={20} width={20} />, <span className='ml-2'>Submitting</span>]
+      : [<i className='fas fa-upload' />, <span className='ml-2'>Submit</span>]}
+  </button>
+);
+
+const SuccessButton = () => (
+  <button
+    className='bg-green-500 cursor-default text-white font-bold uppercase text-sm px-6 py-3 rounded outline-none focus:outline-none mr-1 mb-1 flex items-center justify-center w-52'
+    type='button'
+  >
+    <i className='fas fa-check-circle' /> <span className='ml-2'>Submitted</span>
+  </button>
+);
+
 const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
   const [derivedProof, setDerivedProof] = useState();
   const [showCode, setShowCode] = useState(false);
   const toggleShowCode = () => setShowCode(!showCode);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
   const downloadCredential = () => {
     const a = document.createElement('a');
@@ -293,6 +321,14 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
       journal: {},
       author: {},
     },
+  };
+
+  const handleSubmit = () => {
+    setIsLoading(true);
+    createReviewProof(derivedProof).then(() => {
+      setIsSubmitSuccess(true);
+      setIsLoading(false);
+    });
   };
 
   useEffect(() => {
@@ -352,14 +388,7 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
             Download Credential
           </button>
         </div>
-        <div>
-          <button
-            className='bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150'
-            type='button'
-          >
-            <i className='fas fa-upload' /> Submit
-          </button>
-        </div>
+        <div>{isSubmitSuccess ? <SuccessButton /> : <SubmitButton isLoading={isLoading} handleSubmit={handleSubmit} />}</div>
       </div>
 
       {showCode ? (
