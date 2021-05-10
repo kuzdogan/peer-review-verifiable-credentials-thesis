@@ -8,7 +8,7 @@ const createReviewProof = {
     type: Joi.array().items(Joi.string()).required(),
     description: Joi.string().required(),
     issuer: Joi.string().required(),
-    issuanceDate: Joi.date().required(),
+    issuanceDate: Joi.string().required(),
     credentialSubject: Joi.object().keys({
       id: Joi.string().required(),
       type: Joi.string().required(),
@@ -24,7 +24,7 @@ const createReviewProof = {
     }),
     proof: Joi.object().keys({
       type: Joi.string().required(),
-      created: Joi.date().required(),
+      created: Joi.string().required(),
       nonce: Joi.string().required(),
       proofPurpose: Joi.string().required(),
       proofValue: Joi.string().required(),

@@ -7,7 +7,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import AddReview from 'views/admin/AddReview';
 // views
 import Dashboard from 'views/admin/Dashboard.js';
-import Reviews from 'views/admin/Reviews.js';
+import Reviews from 'views/admin/Reviews';
 import Settings from 'views/admin/Settings.js';
 import Profile from 'views/Profile';
 import UserContext from '../UserContext';

@@ -68,6 +68,7 @@ async function generateUnsignedCredential(reviewId) {
       id: `${API_URL}/users/${review.id}`,
       type: 'PeerReview',
       name: `Peer Review: ${review.manuscript.title}`,
+      journal: 'Journal X',
       author: {
         type: 'PeerReviewAuthor',
         id: `${API_URL}/users/${review.reviewer.id}`, // or DID, or ORCID
@@ -75,7 +76,6 @@ async function generateUnsignedCredential(reviewId) {
         familyName: review.reviewer.name,
         email: review.reviewer.email,
       },
-      journal: 'Journal X',
     },
   };
 

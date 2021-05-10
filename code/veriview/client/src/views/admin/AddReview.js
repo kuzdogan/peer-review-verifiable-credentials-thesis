@@ -65,7 +65,7 @@ const AddReview = () => {
         </button>{' '}
         <input
           type='file'
-          accept='.json, application/json'
+          accept='.json, .jsonld, application/json'
           id='file'
           ref={inputFile}
           className='hidden'
@@ -150,7 +150,7 @@ const ReviewDisplayAndChoose = ({ review, handleNextPage, selectedAttributes, se
     <ReviewAttribute label='Credential ID' value={review.id} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
-    <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
+    <ReviewAttribute label='Issuance Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
 
     <hr className='my-2' />
 
@@ -325,6 +325,7 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
 
   const handleSubmit = () => {
     setIsLoading(true);
+    console.log(derivedProof);
     createReviewProof(derivedProof).then(() => {
       setIsSubmitSuccess(true);
       setIsLoading(false);
@@ -401,7 +402,7 @@ const DeriveReview = ({ review, selectedAttributes, handlePrevPage }) => {
           <ReviewAttribute label='Credential ID' value={review.id} />
           <ReviewAttribute label='Description' value={review.description} />
           <ReviewAttribute label='Issuer' value={review.issuer} />
-          <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
+          <ReviewAttribute label='Issuance Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
           {derivedProof.credentialSubject && (
             <div className=''>
               <div className='mt-4 text-lg font-bold underline'>Review</div>

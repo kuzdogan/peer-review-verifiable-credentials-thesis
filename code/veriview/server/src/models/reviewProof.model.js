@@ -30,7 +30,7 @@ const reviewProofSchema = mongoose.Schema(
       required: true,
     },
     issuanceDate: {
-      type: Date,
+      type: String,
       required: true,
     },
     credentialSubject: {
@@ -68,7 +68,7 @@ const reviewProofSchema = mongoose.Schema(
     },
     proof: {
       type: { type: String, required: true },
-      created: { type: Date, required: true },
+      created: { type: String, required: true },
       nonce: { type: String, requred: true },
       proofPurpose: { type: String, required: true },
       proofValue: { type: String, required: true },
