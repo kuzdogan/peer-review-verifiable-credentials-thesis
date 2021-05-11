@@ -68,11 +68,12 @@ async function generateUnsignedCredential(reviewId) {
     credentialSubject: {
       id: `${API_URL}/users/${review.id}`,
       type: 'PeerReview',
-      description: 'Peer review done for a scholarly article',
       title: review.title,
+      content: review.content,
+      reviewDate: review.submissionDate.toISOString(),
+      competingInterestStatement: review.competingInterestStatement,
       journal: {
         id: API_URL,
-        '@type': 'https://schema.org/Periodical',
         name: 'International Journal of X',
         issn: '2046-1402',
       },
@@ -81,9 +82,6 @@ async function generateUnsignedCredential(reviewId) {
         title: review.manuscript.title,
         abstract: review.manuscript.abstract,
       },
-      content: review.content,
-      reviewDate: review.submissionDate,
-      competingInterestStatement: review.competingInterestStatement,
       author: {
         type: 'PeerReviewAuthor',
         id: review.reviewer.orcid ? `orcid:${review.reviewer.orcid}` : `${API_URL}/reviewers/${review.reviewer.id}`, // or DID, or ORCID

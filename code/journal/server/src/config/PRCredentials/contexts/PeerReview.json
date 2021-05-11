@@ -21,8 +21,11 @@
         "@protected": true,
         "id": "@id",
         "type": "@type",
-        "description": "schema:description",
         "title": "schema:headline",
+        "content": "schema:text",
+        "reviewDate": "schema:dateCreated",
+        "competingInterestStatement": "schema:Text",
+        "recommendation": "schema:Recommendation",
         "journal": {
           "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#journal",
           "@context": {
@@ -45,10 +48,7 @@
             "abstract": "schema:abstract"
           }
         },
-        "content": "schema:text",
-        "reviewDate": "schema:dateCreated",
-        "competingInterestStatement": "schema:Text",
-        "recommendation": "schema:Recommendation",
+
         "author": {
           "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
           "@type": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor"
