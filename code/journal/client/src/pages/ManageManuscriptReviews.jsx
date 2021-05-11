@@ -146,7 +146,7 @@ const ManageManuscriptReviews = () => {
               reviewTasksPopulated.map((reviewTask, i) => (
                 <tr>
                   {' '}
-                  <td className='py-3 px-6'>{reviewTask.reviewer.name}</td>
+                  <td className='py-3 px-6'>{`${reviewTask.reviewer.firstName} ${reviewTask.reviewer.lastName}`}</td>
                   <td className='py-3 px-6'>{reviewTask.id}</td>
                   <td className='py-3 px-6'>{moment(reviewTask.deadline).format('DD MMM YYYY')}</td>
                   <td className='py-3 px-6 text-center'>

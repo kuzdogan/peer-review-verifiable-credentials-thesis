@@ -23,14 +23,36 @@
         "type": "@type",
         "description": "schema:description",
         "title": "schema:headline",
+        "journal": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#journal",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "name": "schema:name",
+            "issn": "schema:issn"
+          }
+        },
+        "manuscript": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#manuscript",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "title": "schema:headline",
+            "abstract": "schema:abstract"
+          }
+        },
         "content": "schema:text",
         "reviewDate": "schema:dateCreated",
-        "identifier": "schema:identifier",
-        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
-        "journal": "schema:Periodical",
         "competingInterestStatement": "schema:Text",
         "recommendation": "schema:Recommendation",
-        "manuscript": "schema:ScholarlyArticle"
+        "author": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
+          "@type": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor"
+        }
       }
     },
     "PeerReviewAuthor": {
@@ -43,8 +65,7 @@
         "givenName": "schema:givenName",
         "familyName": "schema:familyName",
         "institution": "schema:Organization",
-        "email": "schema:email",
-        "identifier": "schema:identifier"
+        "email": "schema:email"
       }
     }
   }

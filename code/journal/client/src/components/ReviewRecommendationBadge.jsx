@@ -8,7 +8,7 @@ const ReviewRecommendationBadge = ({ recommendation, small }) => {
     case 'Minor Revision':
       return <span className={`${baseStyle} text-base rounded-full text-yellow-600  bg-yellow-200 `}> Minor Revision</span>;
     case 'Major Revision':
-      return <span className={`${baseStyle} rounded-full text-orange-600  bg-orange-200 `}> Submitted</span>;
+      return <span className={`${baseStyle} rounded-full text-orange-600  bg-orange-200 `}> Major Revision</span>;
     case 'Reject':
       return <span className={`${baseStyle} rounded-full text-red-600  bg-red-200`}> Rejected</span>;
     default:

@@ -24,7 +24,7 @@ const PEER_REVIEW_CONTEXT_URL =
   'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json';
 const VC_CONTEXT_URL = 'https://www.w3.org/2018/credentials/v1';
 const BBS_CONTEXT_URL = 'https://w3id.org/security/bbs/v1';
-const API_URL = 'http://localhost:3000/v1/auth';
+const API_URL = 'http://localhost:3000';
 
 // cached contexts
 const contexts = {
@@ -61,40 +61,52 @@ async function generateUnsignedCredential(reviewId) {
     '@context': [VC_CONTEXT_URL, PEER_REVIEW_CONTEXT_URL, BBS_CONTEXT_URL],
     id: `${API_URL}/reviews/${review.id}/credential`,
     type: ['VerifiableCredential', 'PeerReviewCredential'],
-    description: 'Peer Review Credential version 0.1',
+    name: 'Peer Review Credential version 0.1',
+    description: 'A Verifiable Credential representing a peer review that is done for a scholarly article.',
     issuer: controller.id,
     issuanceDate: new Date().toISOString(),
     credentialSubject: {
       id: `${API_URL}/users/${review.id}`,
       type: 'PeerReview',
-      name: `Peer Review: ${review.manuscript.title}`,
-      journal: 'Journal X',
+      description: 'Peer review done for a scholarly article',
+      title: review.title,
+      journal: {
+        id: API_URL,
+        '@type': 'https://schema.org/Periodical',
+        name: 'International Journal of X',
+        issn: '2046-1402',
+      },
+      manuscript: {
+        id: `${API_URL}/manuscripts/${review.manuscript.id}`,
+        title: review.manuscript.title,
+        abstract: review.manuscript.abstract,
+      },
+      content: review.content,
+      reviewDate: review.submissionDate,
+      competingInterestStatement: review.competingInterestStatement,
       author: {
         type: 'PeerReviewAuthor',
-        id: `${API_URL}/users/${review.reviewer.id}`, // or DID, or ORCID
-        givenName: review.reviewer.name, // TODO: Fix user model as givenname familyname
-        familyName: review.reviewer.name,
+        id: review.reviewer.orcid ? `orcid:${review.reviewer.orcid}` : `${API_URL}/reviewers/${review.reviewer.id}`, // or DID, or ORCID
+        givenName: review.reviewer.firstName,
+        familyName: review.reviewer.lastName,
         email: review.reviewer.email,
+        institution: review.reviewer.institution,
       },
     },
   };
 
-  console.log(jsonld);
   return jsonld;
 }
 
 async function issuePeerReviewCredential(reviewId) {
   const unsignedDoc = await generateUnsignedCredential(reviewId);
   const keyPair = await new Bls12381G2KeyPair(keyPairOptions);
-  console.log('Generated KeyPair');
   const suite = new BbsBlsSignature2020({ key: keyPair });
-  console.log('Generated key suite');
   const signedVC = await sign(unsignedDoc, {
     purpose: new purposes.AssertionProofPurpose(),
     suite,
     documentLoader,
   });
-  console.log(signedVC);
   return signedVC;
 }
 

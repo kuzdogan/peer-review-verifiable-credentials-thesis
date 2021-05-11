@@ -19,9 +19,15 @@ const reviewSchema = mongoose.Schema(
       ref: 'ReviewTask',
       required: true,
     },
+    title: {
+      type: String,
+    },
     content: {
       type: String,
       required: true,
+    },
+    competingInterestStatement: {
+      type: String,
     },
     recommendation: {
       type: String,

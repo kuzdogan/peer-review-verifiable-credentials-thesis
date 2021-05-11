@@ -1,5 +1,7 @@
+import moment from 'moment';
 import React, { useContext } from 'react';
 import { FaFileSignature } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { issueCredential } from '../services/review.service';
 import UserContext from '../UserContext';
 
@@ -33,7 +35,7 @@ const ReviewCard = ({ review }) => {
   );
   return (
     <div className='bg-white rounded-lg shadow-lg flex flex-col p-12'>
-      <div className='text-xl font-bold'>Review {review.id}</div>
+      <div className='text-xl font-bold'>{review.title}</div>
       <div className='mt-4'>
         {review.reviewer.id === user.id && (
           <div>
@@ -41,15 +43,24 @@ const ReviewCard = ({ review }) => {
           </div>
         )}
         <div className='text-gray-800 mt-4 font-bold'>Reviewer</div>
-        <div>{review.reviewer.name}</div>
+        <div>{`${review.reviewer.firstName} ${review.reviewer.lastName}`}</div>
         <div className='text-gray-800 mt-4 font-bold'>Manuscript</div>
-        <div>{review.manuscript.title}</div>
+        <div>
+          <Link to={`/manuscripts/${review.manuscript.id}`} className=''>
+            {review.manuscript.title}
+          </Link>
+        </div>
         {review.content && (
           <div>
             <div className='text-gray-800 mt-4 font-bold'>Content</div>
             <div>{review.content}</div>
           </div>
         )}
+        <div className='text-gray-800 mt-4 font-bold'>Competing Interest Statement</div>
+        <div>{review.competingInterestStatement ? review.competingInterestStatement : 'None'}</div>
+
+        <div className='text-gray-800 mt-4 font-bold'>Submission Date</div>
+        <div>{moment(review.submittedAt).format('DD MMMM YYYY')}</div>
 
         <div className='text-gray-800 mt-4 font-bold'>Recommendation</div>
         <div>{review.recommendation}</div>

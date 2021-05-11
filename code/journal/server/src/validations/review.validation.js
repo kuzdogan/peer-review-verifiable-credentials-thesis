@@ -4,7 +4,9 @@ const { objectId, recommendationType } = require('./custom.validation');
 const createReview = {
   body: Joi.object().keys({
     reviewTask: Joi.string().required().custom(objectId),
+    title: Joi.string().allow(''),
     content: Joi.string().required(),
+    competingInterestStatement: Joi.string().allow(''),
     recommendation: Joi.string().required().custom(recommendationType),
     submissionDate: Joi.date(),
   }),
@@ -35,7 +37,9 @@ const updateReview = {
     .keys({
       reviewer: Joi.string().custom(objectId),
       manuscript: Joi.string().custom(objectId),
+      title: Joi.string(),
       content: Joi.string(),
+      competingInterestStatement: Joi.string(),
       recommendation: Joi.string().custom(recommendationType),
       submissionDate: Joi.date(),
     })

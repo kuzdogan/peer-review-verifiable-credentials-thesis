@@ -6,8 +6,9 @@ const { reviewService, reviewTaskService } = require('../services');
 const { reviewTaskStatuses } = require('../config/reviewTasks');
 
 const createReview = catchAsync(async (req, res) => {
-  const reviewTask = await reviewTaskService.getReviewTaskById(req.body.reviewTask);
-  const review = await reviewService.createReview({ ...req.body, manuscript: reviewTask.manuscript }, req.user);
+  const reviewTask = await reviewTaskService.getReviewTaskByIdPopulated(req.body.reviewTask);
+  const title = req.body.title ? req.body.title : `Review: ${reviewTask.manuscript.title}`;
+  const review = await reviewService.createReview({ ...req.body, title, manuscript: reviewTask.manuscript.id }, req.user);
   await reviewTaskService.updateReviewTaskById(req.body.reviewTask, {
     review: review.id,
     status: reviewTaskStatuses.SUBMITTED,

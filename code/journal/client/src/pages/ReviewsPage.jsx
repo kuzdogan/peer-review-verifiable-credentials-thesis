@@ -24,7 +24,7 @@ const ReviewsPage = () => {
       <tr>
         <td className='py-4 px-4'>{review.manuscript.title}</td>
         <td className='py-4 px-4'>{moment(review.submissionDate).format('DD MMM YY')}</td>
-        <td className='py-4 px-4 text-center'>
+        <td className='py-4 px-4 text-center whitespace-nowrap'>
           <ReviewRecommendationBadge recommendation={review.recommendation} />
         </td>
         <td className='py-4 px-4 text-center'>

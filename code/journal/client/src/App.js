@@ -26,7 +26,7 @@ function App() {
     <UserContext.Provider value={{ user, setUser }}>
       <div className='flex flex-col md:flex-row'>
         {isLoggedIn() ? <Sidebar /> : null}
-        <div className='ml-64 bg-gray-50 flex flex-col flex-1'>
+        <div className='ml-64 bg-gray-200 flex flex-col flex-1'>
           <PageTitle />
           <Switch>
             <Route exact path='/login' component={LoginPage} />

@@ -18,7 +18,7 @@ export default function Navbar() {
 
       <div className='flex flex-col items-center mt-6 -mx-2'>
         <img className='object-cover w-24 h-24 mx-2 rounded-full' src={userIcon} alt='avatar' />
-        <h4 className='mx-2 mt-2 font-medium text-gray-800 hover:underline'>{user.name}</h4>
+        <h4 className='mx-2 mt-2 font-medium text-gray-800 hover:underline'>{`${user.firstName} ${user.lastName}`}</h4>
         <p className='mx-2 mt-1 text-sm font-medium text-gray-600 hover:underline'>{user.email}</p>
         <p className='mx-2 mt-1 text-sm font-medium text-gray-600 hover:underline'>
           {user.role === 'user' ? 'Author' : 'Editor'}
