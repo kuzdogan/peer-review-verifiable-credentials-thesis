@@ -2,15 +2,39 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { register } from '../services/auth.service';
 
+const Input = ({ type, placeholder, onChange }) => (
+  <div className='flex gap-4 mb-2'>
+    <div className=' relative '>
+      <input
+        type={type}
+        className='rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
+        placeholder={placeholder}
+        onChange={onChange}
+      />
+    </div>
+  </div>
+);
+
 export default function Register() {
-  const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [institution, setInstitution] = useState('');
+  const [orcid, setOrcid] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleChangeName = (e) => {
-    setName(e.target.value);
+  const handleChangeFirstName = (e) => {
+    setFirstName(e.target.value);
   };
-
+  const handleChangeLastName = (e) => {
+    setLastName(e.target.value);
+  };
+  const handleChangeInstitution = (e) => {
+    setInstitution(e.target.value);
+  };
+  const handleChangeOrcid = (e) => {
+    setOrcid(e.target.value);
+  };
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -21,7 +45,7 @@ export default function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    register(name, email, password);
+    register(firstName, lastName, institution, orcid, email, password);
   };
 
   return (
@@ -35,40 +59,12 @@ export default function Register() {
       </span>
       <div className='p-6 mt-8'>
         <form onSubmit={handleRegister}>
-          <div className='flex gap-4 mb-2'>
-            <div className=' relative '>
-              <input
-                type='text'
-                id='create-account-first-name'
-                className=' rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
-                name='Name'
-                placeholder='Name'
-                onChange={handleChangeName}
-              />
-            </div>
-          </div>
-          <div className='flex flex-col mb-2'>
-            <div className=' relative '>
-              <input
-                type='text'
-                id='create-account-email'
-                className=' rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
-                placeholder='Email'
-                onChange={handleChangeEmail}
-              />
-            </div>
-          </div>
-          <div className='flex flex-col mb-2'>
-            <div className=' relative '>
-              <input
-                type='password'
-                id='create-account-password'
-                className=' rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
-                placeholder='Password'
-                onChange={handleChangePassword}
-              />
-            </div>
-          </div>
+          <Input placeholder='First Name' type='text' onChange={handleChangeFirstName} />
+          <Input placeholder='Last Name' type='text' onChange={handleChangeLastName} />
+          <Input placeholder='Institution' type='text' onChange={handleChangeInstitution} />
+          <Input placeholder='ORCID' type='text' onChange={handleChangeOrcid} />
+          <Input placeholder='E-mail' type='text' onChange={handleChangeEmail} />
+          <Input placeholder='Password' type='password' onChange={handleChangePassword} />
           <div className='flex w-full my-4'>
             <button
               type='submit'

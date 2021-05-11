@@ -6,7 +6,12 @@ const { roles } = require('../config/roles');
 
 const userSchema = mongoose.Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    lastName: {
       type: String,
       required: true,
       trim: true,
@@ -22,6 +27,13 @@ const userSchema = mongoose.Schema(
           throw new Error('Invalid email');
         }
       },
+    },
+    institution: {
+      type: String,
+      required: true,
+    },
+    orcid: {
+      type: String,
     },
     password: {
       type: String,
