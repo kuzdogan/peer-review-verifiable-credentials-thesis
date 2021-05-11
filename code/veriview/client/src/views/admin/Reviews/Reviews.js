@@ -9,11 +9,11 @@ import ReviewsList from './ReviewsList';
 
 export default function Reviews() {
   const { user } = useContext(UserContext);
-  const [reviews, setReviews] = useState();
+  const [reviewProofs, setReviewProofs] = useState();
 
   useEffect(() => {
     readReviewProofs({ user: user.id }).then((res) => {
-      setReviews(res.results);
+      setReviewProofs(res.results);
     });
   }, []);
   return (
@@ -27,7 +27,11 @@ export default function Reviews() {
             Add a Review
           </button>
         </Link>
-        {!reviews ? <Loader type='Circles' color={lightBlue['500']} height={100} /> : <ReviewsList reviews={reviews} />}
+        {!reviewProofs ? (
+          <Loader type='Circles' color={lightBlue['500']} height={100} />
+        ) : (
+          <ReviewsList reviewProofs={reviewProofs} />
+        )}
       </div>
     </>
   );

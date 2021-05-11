@@ -21,6 +21,9 @@ const reviewProofSchema = mongoose.Schema(
       type: [{ type: String }],
       required: true,
     },
+    name: {
+      type: String,
+    },
     description: {
       type: String,
       required: true,
@@ -42,11 +45,39 @@ const reviewProofSchema = mongoose.Schema(
         type: String,
         required: true,
       },
-      name: {
+      title: {
+        type: String,
+      },
+      content: {
+        type: String,
+      },
+      reviewDate: {
+        type: String,
+      },
+      competingInterestStatement: {
         type: String,
       },
       journal: {
-        type: String,
+        id: {
+          type: String,
+        },
+        name: {
+          type: String,
+        },
+        issn: {
+          type: String,
+        },
+      },
+      manuscipt: {
+        id: {
+          type: String,
+        },
+        title: {
+          type: String,
+        },
+        abstract: {
+          type: String,
+        },
       },
       author: {
         type: {
@@ -62,6 +93,9 @@ const reviewProofSchema = mongoose.Schema(
           type: String,
         },
         email: {
+          type: String,
+        },
+        institution: {
           type: String,
         },
       },

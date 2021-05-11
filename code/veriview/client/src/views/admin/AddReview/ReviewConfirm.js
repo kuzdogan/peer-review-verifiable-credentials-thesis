@@ -8,6 +8,7 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
     <div className='text-sm mb-6 text-center'> A credential will be derived with the following attributes only </div>
     <div className='mt-4 text-lg font-bold underline'>Credential</div>
     <ReviewAttribute label='Credential ID' value={review.id} />
+    <ReviewAttribute label='Name' value={review.name} />
     <ReviewAttribute label='Description' value={review.description} />
     <ReviewAttribute label='Issuer' value={review.issuer} />
     <ReviewAttribute label='Issuence Date' value={moment(review.issuanceDate).format('DD MMMM YYYY')} />
@@ -18,8 +19,23 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
       <div className='mt-4 text-lg font-bold underline'>Review</div>
       <ReviewAttribute label='Review ID' value={review.credentialSubject.id} />
       <ReviewAttribute label='Type' value={review.credentialSubject.type} />
-      {selectedAttributes.name && <ReviewAttribute label='Name' value={review.credentialSubject.name} />}
-      {selectedAttributes.journal && <ReviewAttribute label='Journal' value={review.credentialSubject.journal} />}
+      {selectedAttributes.title && <ReviewAttribute label='Title' value={review.credentialSubject.title} />}
+      {selectedAttributes.content && (
+        <ReviewAttribute label='Content' value={`${review.credentialSubject.content.slice(0, 500)}...`} />
+      )}
+      {selectedAttributes.reviewDate && (
+        <ReviewAttribute label='Review Date' value={moment(review.credentialSubject.reviewDate).format('DD MMMM YYYY')} />
+      )}
+      {selectedAttributes.competingInterestStatement && (
+        <ReviewAttribute label='Competing Interest Statement' value={review.credentialSubject.competingInterestStatement} />
+      )}
+    </div>
+
+    <div className=''>
+      <div className='mt-4 text-lg font-bold underline'>Journal</div>
+      {selectedAttributes.journal.id && <ReviewAttribute label='ID' value={review.credentialSubject.journal.id} />}
+      {selectedAttributes.journal.name && <ReviewAttribute label='Name' value={review.credentialSubject.journal.name} />}
+      {selectedAttributes.journal.issn && <ReviewAttribute label='ISSN' value={review.credentialSubject.journal.issn} />}
     </div>
 
     <div className=''>
@@ -29,9 +45,12 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
         <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
       )}
       {selectedAttributes.author.familyName && (
-        <ReviewAttribute label='Family Name' value={review.credentialSubject.author.email} />
+        <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
       )}
       {selectedAttributes.author.email && <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />}
+      {selectedAttributes.author.institution && (
+        <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+      )}
     </div>
     <div className='flex mt-4 justify-between'>
       <button

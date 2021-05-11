@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import { verifyPeerReviewCredential } from 'utils/deriveProof';
 import AttributeChoice from './AttributeChoice';
 import DeriveReview from './DeriveReview';
 import ReviewConfirm from './ReviewConfirm';
@@ -8,14 +9,23 @@ const AddReview = () => {
   const inputFile = useRef(null);
   const [review, setReview] = useState();
   const [page, setPage] = useState(0);
+  const [isFullCredentialVerified, setIsFullCredentialVerified] = useState();
   const [selectedAttributes, setSelectedAttributes] = useState({
-    name: true,
-    journal: true,
+    title: true,
+    content: true,
+    reviewDate: true,
+    competingInterestStatement: true,
+    journal: {
+      id: true,
+      name: true,
+      issn: true,
+    },
     author: {
       id: true,
       givenName: true,
       familyName: true,
       email: true,
+      institution: true,
     },
   });
 
@@ -37,7 +47,9 @@ const AddReview = () => {
     const file = event.target.files[0];
     const fileJSON = await fileToJSON(file);
     setReview(fileJSON);
-    console.log(fileJSON);
+    const result = await verifyPeerReviewCredential(fileJSON);
+    setIsFullCredentialVerified(result.verified);
+    console.log(result);
   };
 
   const handleNextPage = () => {
@@ -81,6 +93,7 @@ const AddReview = () => {
           handleNextPage={handleNextPage}
           selectedAttributes={selectedAttributes}
           setSelectedAttributes={setSelectedAttributes}
+          isFullCredentialVerified={isFullCredentialVerified}
         />
       );
       break;

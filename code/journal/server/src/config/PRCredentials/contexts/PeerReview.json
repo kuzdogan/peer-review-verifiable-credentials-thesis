@@ -48,11 +48,7 @@
             "abstract": "schema:abstract"
           }
         },
-
-        "author": {
-          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author",
-          "@type": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor"
-        }
+        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author"
       }
     },
     "PeerReviewAuthor": {

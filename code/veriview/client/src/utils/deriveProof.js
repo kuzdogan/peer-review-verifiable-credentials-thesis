@@ -1,4 +1,4 @@
-import { BbsBlsSignatureProof2020, deriveProof } from '@mattrglobal/jsonld-signatures-bbs';
+import { BbsBlsSignature2020, BbsBlsSignatureProof2020, deriveProof } from '@mattrglobal/jsonld-signatures-bbs';
 import { documentLoaders } from 'jsonld';
 import { extendContextLoader, purposes, verify } from 'jsonld-signatures';
 import securityContexts from 'jsonld-signatures/lib/contexts';
@@ -42,6 +42,7 @@ export async function selectiveDisclose(signedDocument, revealDocument) {
     suite: new BbsBlsSignatureProof2020(),
     documentLoader,
   });
+  console.log(JSON.stringify(derivedProof, null, 2));
   return derivedProof;
 }
 
@@ -52,4 +53,14 @@ export async function verifySelectiveDisclosedCredential(derivedProof) {
     documentLoader,
   });
   return verified;
+}
+
+export async function verifyPeerReviewCredential(signedCredential) {
+  console.log('Verifying Credential');
+  const isVerified = await verify(signedCredential, {
+    suite: new BbsBlsSignature2020(),
+    purpose: new purposes.AssertionProofPurpose(),
+    documentLoader,
+  });
+  return isVerified;
 }

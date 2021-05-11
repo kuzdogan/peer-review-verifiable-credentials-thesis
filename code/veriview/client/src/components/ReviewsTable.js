@@ -13,13 +13,15 @@ const TableHeaderCell = ({ label }) => (
 const VerifiedIcon = ({ isVerified }) =>
   isVerified ? <i className='fas fa-check mr-2 text-green-500' /> : <i className='fas fa-times mr-2 text-red-500' />;
 
-const TableRow = ({ review }) => {
+const TableRow = ({ reviewProof }) => {
   const [isVerified, setIsVerified] = useState();
 
-  const { createdAt, _id, user, ...originalReviewProof } = review;
+  console.log(reviewProof);
+  const { createdAt, _id, user, ...originalReviewProof } = reviewProof;
   useEffect(() => {
     // console.log(originalReviewProof);
     verifySelectiveDisclosedCredential(originalReviewProof).then((res) => {
+      console.log(res);
       setIsVerified(res.verified);
     });
   }, []);
@@ -27,14 +29,19 @@ const TableRow = ({ review }) => {
   const style = 'border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4';
   return (
     <tr>
-      <td className={style}>{review.credentialSubject.journal ? review.credentialSubject.journal : 'N/A'}</td>
-      <td className={style}>{review.issuer ? review.issuer : 'N/A'}</td>
-      <td className={style}>{review.credentialSubject.name ? review.credentialSubject.name : 'N/A'}</td>
+      <td className={style}>
+        {reviewProof.credentialSubject.journal?.name ? reviewProof.credentialSubject.journal.name : 'N/A'}
+      </td>
+      <td className={style}>{reviewProof.issuer ? reviewProof.issuer : 'N/A'}</td>
+      <td className={style}>{reviewProof.credentialSubject.title ? reviewProof.credentialSubject.title : 'N/A'}</td>
       <td className={`${style} text-center`}>
         {' '}
-        {review.issuanceDate ? moment(review.issuanceDate).format('DD MMM YYYY') : 'N/A'}
+        {reviewProof.issuanceDate ? moment(reviewProof.issuanceDate).format('DD MMM YYYY') : 'N/A'}
       </td>
-      <td className={`${style} text-center`}> {review.createdAt ? moment(review.createdAt).format('DD MMM YYYY') : 'N/A'}</td>
+      <td className={`${style} text-center`}>
+        {' '}
+        {reviewProof.createdAt ? moment(reviewProof.createdAt).format('DD MMM YYYY') : 'N/A'}
+      </td>
       <td className={`${style} text-center`}>
         {' '}
         {isVerified === undefined ? <Loader type='Oval' height={20} /> : <VerifiedIcon isVerified={isVerified} />}
@@ -42,16 +49,16 @@ const TableRow = ({ review }) => {
     </tr>
   );
 };
-export default function ReviewsTable({ reviews }) {
-  console.log(reviews);
-  const headers = ['Journal', 'Issuer', 'Name', 'Issuance Date', 'Submitted At', 'Proof Verified'];
+export default function ReviewsTable({ reviewProofs }) {
+  console.log(reviewProofs);
+  const headers = ['Journal', 'Issuer', 'Title', 'Issuance Date', 'Submitted At', 'Proof Verified'];
   return (
     <>
       <div className='relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded bg-white'>
         <div className='rounded-t mb-0 px-4 py-3 border-0'>
           <div className='flex flex-wrap items-center'>
             <div className='relative w-full px-4 max-w-full flex-grow flex-1'>
-              <h3 className='font-semibold text-lg text-blueGray-70'>Shared Reviews</h3>
+              <h3 className='font-semibold text-lg text-blueGray-70'>Shared Review Proofs</h3>
             </div>
           </div>
         </div>
@@ -66,8 +73,8 @@ export default function ReviewsTable({ reviews }) {
               </tr>
             </thead>
             <tbody>
-              {reviews.map((review, i) => (
-                <TableRow review={review} key={`row-${i}`} />
+              {reviewProofs.map((reviewProof, i) => (
+                <TableRow reviewProof={reviewProof} key={`row-${i}`} />
               ))}
             </tbody>
           </table>
