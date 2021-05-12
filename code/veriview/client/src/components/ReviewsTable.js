@@ -1,8 +1,6 @@
 // components
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
-import Loader from 'react-loader-spinner';
-import { verifySelectiveDisclosedCredential } from 'utils/deriveProof';
 
 const TableHeaderCell = ({ label }) => (
   <th className='px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100'>
@@ -20,10 +18,10 @@ const TableRow = ({ reviewProof }) => {
   const { createdAt, _id, user, ...originalReviewProof } = reviewProof;
   useEffect(() => {
     // console.log(originalReviewProof);
-    verifySelectiveDisclosedCredential(originalReviewProof).then((res) => {
-      console.log(res);
-      setIsVerified(res.verified);
-    });
+    // verifySelectiveDisclosedCredential(originalReviewProof).then((res) => {
+    //   console.log(res);
+    //   setIsVerified(res.verified);
+    // });
   }, []);
 
   const style = 'border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4';
@@ -44,7 +42,8 @@ const TableRow = ({ reviewProof }) => {
       </td>
       <td className={`${style} text-center`}>
         {' '}
-        {isVerified === undefined ? <Loader type='Oval' height={20} /> : <VerifiedIcon isVerified={isVerified} />}
+        {/* ? <Loader type='Oval' height={20} />  */}
+        {isVerified === undefined ? <div>?</div> : <VerifiedIcon isVerified={isVerified} />}
       </td>
     </tr>
   );
