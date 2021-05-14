@@ -29,6 +29,7 @@ module.exports = {
     'import/no-extraneous-dependencies': 'warn',
     'no-param-reassign': 'warn',
     camelcase: 'off',
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {
