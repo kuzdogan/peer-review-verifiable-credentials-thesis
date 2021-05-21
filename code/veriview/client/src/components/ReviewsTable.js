@@ -2,6 +2,7 @@
 import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
+import { Link } from 'react-router-dom';
 import { verifyDerivedProof } from 'services/verify.service';
 import { formatDBreviewProof } from 'utils/deriveProof';
 
@@ -30,24 +31,26 @@ const TableRow = ({ reviewProof }) => {
 
   const style = 'border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs p-4';
   return (
-    <tr>
-      <td className={style}>
-        {reviewProof.credentialSubject.journal?.name ? reviewProof.credentialSubject.journal.name : 'N/A'}
-      </td>
-      <td className={style}>{reviewProof.issuer ? reviewProof.issuer : 'N/A'}</td>
-      <td className={style}>{reviewProof.credentialSubject.title ? reviewProof.credentialSubject.title : 'N/A'}</td>
-      <td className={`${style} text-center`}>
-        {' '}
-        {reviewProof.issuanceDate ? moment(reviewProof.issuanceDate).format('DD MMM YYYY') : 'N/A'}
-      </td>
-      <td className={`${style} text-center`}>
-        {' '}
-        {reviewProof.createdAt ? moment(reviewProof.createdAt).format('DD MMM YYYY') : 'N/A'}
-      </td>
-      <td className={`${style} text-center`}>
-        {isVerified === undefined ? <Loader type='Oval' height={20} /> : <VerifiedIcon isVerified={isVerified} />}
-      </td>
-    </tr>
+    <Link style={{ display: 'contents' }} to={`/reviews/${reviewProof._id}`}>
+      <tr>
+        <td className={style}>
+          {reviewProof.credentialSubject.journal?.name ? reviewProof.credentialSubject.journal.name : 'N/A'}
+        </td>
+        <td className={style}>{reviewProof.issuer ? reviewProof.issuer : 'N/A'}</td>
+        <td className={style}>{reviewProof.credentialSubject.title ? reviewProof.credentialSubject.title : 'N/A'}</td>
+        <td className={`${style} text-center`}>
+          {' '}
+          {reviewProof.issuanceDate ? moment(reviewProof.issuanceDate).format('DD MMM YYYY') : 'N/A'}
+        </td>
+        <td className={`${style} text-center`}>
+          {' '}
+          {reviewProof.createdAt ? moment(reviewProof.createdAt).format('DD MMM YYYY') : 'N/A'}
+        </td>
+        <td className={`${style} text-center`}>
+          {isVerified === undefined ? <Loader type='Oval' height={20} /> : <VerifiedIcon isVerified={isVerified} />}
+        </td>
+      </tr>
+    </Link>
   );
 };
 export default function ReviewsTable({ reviewProofs }) {

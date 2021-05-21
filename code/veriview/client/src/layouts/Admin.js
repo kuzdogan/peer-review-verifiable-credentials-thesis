@@ -9,6 +9,7 @@ import AddReview from 'views/admin/AddReview';
 import Reviews from 'views/admin/Reviews';
 import Settings from 'views/admin/Settings.js';
 import Profile from 'views/Profile';
+import ViewReview from 'views/ViewReview.js';
 import UserContext from '../UserContext';
 
 export default function Admin() {
@@ -24,8 +25,9 @@ export default function Admin() {
             <Route path='/user/:userId' exact component={Profile} />
             <Route path='/settings' exact component={Settings} />
             <Route path='/reviews/add' exact component={AddReview} />
+            <Route path='/reviews/:reviewId' exact component={ViewReview} />
             <Route path='/reviews' exact component={Reviews} />
-            <Redirect from='/' to='/dashboard' />
+            <Redirect from='/' to='/reviews' />
           </Switch>
         </div>
         <FooterAdmin />
