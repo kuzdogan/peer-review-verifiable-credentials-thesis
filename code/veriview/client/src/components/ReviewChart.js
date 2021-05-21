@@ -184,6 +184,7 @@ export default function CardLineChart({ reviewProofs }) {
             {
               ticks: {
                 fontColor: 'rgba(255,255,255,.7)',
+                stepSize: 1,
               },
               display: true,
               scaleLabel: {
