@@ -12,7 +12,7 @@ export default function Reviews() {
   const [reviewProofs, setReviewProofs] = useState();
 
   useEffect(() => {
-    readReviewProofs({ user: user.id }).then((res) => {
+    readReviewProofs({ user: user._id }).then((res) => {
       setReviewProofs(res.results);
     });
   }, []);

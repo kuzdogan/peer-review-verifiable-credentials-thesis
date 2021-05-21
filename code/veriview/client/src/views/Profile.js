@@ -1,8 +1,63 @@
-import React, { useContext } from 'react';
-import UserContext from '../UserContext';
+import ReviewsTable from 'components/ReviewsTable';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import { getUserById } from 'services/user.service';
+import { verifyDerivedProof } from 'services/verify.service';
+import { formatDBreviewProof } from 'utils/deriveProof';
+import { readReviewProofs } from '../services/reviewProof.service';
 
+const JournalBox = ({ journalName, reviews }) => (
+  <div className='flex items-center p-2 m-2 md:w-1/2 shadow-lg rounded-lg text-blueGray-600 bg-gray-100'>
+    <div className='flex items-center justify-center text-center rounded-full w-8 h-8 bg-lightBlue-200 text-lightBlue-600 mr-2'>
+      {reviews.length}
+    </div>
+    {journalName}
+  </div>
+);
 export default function Profile() {
-  const { user } = useContext(UserContext);
+  const { userId } = useParams();
+  const [user, setUser] = useState();
+  const [reviewProofs, setReviewProofs] = useState();
+  const [verfiedReviewProofs, setVerifiedReviewProofs] = useState();
+  const [unverfiedReviewProofs, setUnverifiedReviewProofs] = useState();
+  const [reviewsByJournalName, setReviewsByJournalName] = useState();
+
+  const groupReviewsByJournalName = (reviews) => {
+    const result = {};
+    reviews.forEach((rp) => {
+      const journalName = rp.credentialSubject.journal.name;
+      if (result[journalName] === undefined) {
+        result[journalName] = [];
+      }
+      result[journalName].push(rp);
+    });
+    return result;
+  };
+  useEffect(() => {
+    getUserById(userId).then((res) => setUser(res));
+    readReviewProofs({ user: userId }).then((res) => {
+      setReviewProofs(res.results);
+      return Promise.all(res.results.map((reviewProof) => verifyDerivedProof(formatDBreviewProof(reviewProof)))).then(
+        (verifyResults) => {
+          console.log(verifyResults);
+          const tempVerifiedProofs = res.results.map((rp, i) => ({
+            ...rp,
+            verified: verifyResults[i].verified,
+          }));
+          setVerifiedReviewProofs(tempVerifiedProofs.filter((rp) => rp.verified));
+          setUnverifiedReviewProofs(tempVerifiedProofs.filter((rp) => !rp.verified));
+          setReviewsByJournalName(groupReviewsByJournalName(tempVerifiedProofs));
+        }
+      );
+    });
+  }, []);
+  if (!user || !verfiedReviewProofs || !unverfiedReviewProofs || !reviewProofs || !reviewsByJournalName) {
+    return 'Loading';
+  }
+  const journalBoxes = [];
+  Object.keys(reviewsByJournalName).forEach((journalName) => {
+    journalBoxes.push(<JournalBox journalName={journalName} reviews={reviewsByJournalName[journalName]} />);
+  });
 
   return (
     <>
@@ -34,16 +89,16 @@ export default function Profile() {
                   <div className='w-full lg:w-4/12 px-4 lg:order-1'>
                     <div className='flex justify-center py-4 lg:pt-4 pt-8'>
                       <div className='mr-4 p-3 text-center'>
-                        <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>22</span>
-                        <span className='text-sm text-blueGray-400'>Friends</span>
+                        <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
+                          {verfiedReviewProofs.length}
+                        </span>
+                        <span className='text-sm text-blueGray-400'>Verified Reviews</span>
                       </div>
                       <div className='mr-4 p-3 text-center'>
-                        <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>10</span>
-                        <span className='text-sm text-blueGray-400'>Photos</span>
-                      </div>
-                      <div className='lg:mr-4 p-3 text-center'>
-                        <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>89</span>
-                        <span className='text-sm text-blueGray-400'>Comments</span>
+                        <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600'>
+                          {unverfiedReviewProofs.length}
+                        </span>
+                        <span className='text-sm text-blueGray-400'>Unverified Reviews</span>
                       </div>
                     </div>
                   </div>
@@ -52,29 +107,28 @@ export default function Profile() {
                   <h3 className='text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2'>
                     {user.firstName} {user.lastName}
                   </h3>
-                  <div className='text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase'>
-                    <i className='fas fa-map-marker-alt mr-2 text-lg text-blueGray-400' /> Los Angeles, California
-                  </div>
-                  <div className='mb-2 text-blueGray-600 mt-10'>
-                    <i className='fas fa-briefcase mr-2 text-lg text-blueGray-400' />
-                    Solution Manager - Creative Tim Officer
-                  </div>
                   <div className='mb-2 text-blueGray-600'>
                     <i className='fas fa-university mr-2 text-lg text-blueGray-400' />
-                    University of Computer Science
+                    {user.institution}
                   </div>
                 </div>
-                <div className='mt-10 py-10 border-t border-blueGray-200 text-center'>
-                  <div className='flex flex-wrap justify-center'>
-                    <div className='w-full lg:w-9/12 px-4'>
-                      <p className='mb-4 text-lg leading-relaxed text-blueGray-700'>
-                        An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy
-                        writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove
-                        structure. An artist of considerable range.
-                      </p>
-                      <a href='#pablo' className='font-normal text-lightBlue-500' onClick={(e) => e.preventDefault()}>
-                        Show more
-                      </a>
+                <div className='mt-10 py-10 border-t border-blueGray-200'>
+                  <div className='flex flex-wrap'>
+                    <div className='w-full'>
+                      <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600  my-2'>
+                        Peer Reviews in Journals{' '}
+                      </span>
+                      <div className='flex flex-wrap'>{journalBoxes}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className='mt-10 py-10 border-t border-blueGray-200'>
+                  <div className='flex flex-wrap'>
+                    <div className='w-full'>
+                      <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600 my-2'>
+                        All Peer Reviews
+                      </span>
+                      <ReviewsTable reviewProofs={reviewProofs} />
                     </div>
                   </div>
                 </div>

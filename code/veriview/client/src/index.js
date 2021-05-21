@@ -7,12 +7,14 @@ import Auth from 'layouts/Auth.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
+import Profile from 'views/Profile';
 
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
       {/* add routes with layouts */}
       <Route path='/auth' component={Auth} />
+      <Route path='/profile/:userId' component={Profile} />
       <PrivateRoute path='/' component={Admin} />
       {/* add redirect for first page */}
       <Redirect from='*' to='/' />

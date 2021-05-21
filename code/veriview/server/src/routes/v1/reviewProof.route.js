@@ -9,11 +9,11 @@ const router = express.Router();
 router
   .route('/')
   .post(auth('postReviewProofs'), validate(reviewProofValidation.createReviewProof), reviewProofController.createReviewProof)
-  .get(auth('getReviewProofs'), validate(reviewProofValidation.getReviewProofs), reviewProofController.getReviewProofs);
+  .get(validate(reviewProofValidation.getReviewProofs), reviewProofController.getReviewProofs);
 
 router
   .route('/:reviewProofId')
-  .get(auth('getReviewProofs'), validate(reviewProofValidation.ReviewProof), reviewProofController.getReviewProof)
+  .get(validate(reviewProofValidation.ReviewProof), reviewProofController.getReviewProof)
   // .patch(auth('manageUsers'), validate(reviewProofValidation.updateReview), reviewController.updateReview)
   .delete(
     auth('manageReviewProofs'),

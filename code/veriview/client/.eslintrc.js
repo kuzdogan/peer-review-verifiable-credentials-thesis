@@ -30,6 +30,7 @@ module.exports = {
     'no-param-reassign': 'warn',
     camelcase: 'off',
     'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
   },
   settings: {
     'import/resolver': {
