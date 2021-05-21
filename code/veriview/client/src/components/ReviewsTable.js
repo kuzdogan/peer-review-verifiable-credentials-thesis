@@ -51,7 +51,6 @@ const TableRow = ({ reviewProof }) => {
   );
 };
 export default function ReviewsTable({ reviewProofs }) {
-  console.log(reviewProofs);
   const headers = ['Journal', 'Issuer', 'Title', 'Issuance Date', 'Submitted At', 'Proof Verified'];
   return (
     <>

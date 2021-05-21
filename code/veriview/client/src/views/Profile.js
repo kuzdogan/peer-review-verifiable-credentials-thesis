@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { getUserById } from 'services/user.service';
 import { verifyDerivedProof } from 'services/verify.service';
 import { formatDBreviewProof } from 'utils/deriveProof';
+import ReviewChart from '../components/ReviewChart';
 import { readReviewProofs } from '../services/reviewProof.service';
 
 const JournalBox = ({ journalName, reviews }) => (
@@ -119,6 +120,18 @@ export default function Profile() {
                         Peer Reviews in Journals{' '}
                       </span>
                       <div className='flex flex-wrap'>{journalBoxes}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className='mt-10 py-10 border-t border-blueGray-200'>
+                  <div className='flex flex-wrap'>
+                    <div className='w-full'>
+                      <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600  my-2'>
+                        Peer Reviews by Month{' '}
+                      </span>
+                      <div className='flex flex-wrap'>
+                        <ReviewChart reviewProofs={verfiedReviewProofs} />
+                      </div>
                     </div>
                   </div>
                 </div>
