@@ -4,8 +4,8 @@ import Loader from 'react-loader-spinner';
 import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlight';
 import { sunburst } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { createReviewProof } from 'services/reviewProof.service';
+import { selectiveDisclose } from 'services/verify.service';
 import colors from 'tailwindcss/colors';
-import { selectiveDisclose } from 'utils/deriveProof';
 import ReviewAttribute from './ReviewAttribute';
 
 const SubmitButton = ({ isLoading, handleSubmit }) => (

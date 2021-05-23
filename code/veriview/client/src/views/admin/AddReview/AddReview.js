@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { verifyPeerReviewCredential } from 'utils/deriveProof';
+import { verifyReviewCredential } from 'services/verify.service';
 import AttributeChoice from './AttributeChoice';
 import DeriveReview from './DeriveReview';
 import ReviewConfirm from './ReviewConfirm';
@@ -44,12 +44,16 @@ const AddReview = () => {
   }
 
   const handleChangeFile = async (event) => {
-    const file = event.target.files[0];
-    const fileJSON = await fileToJSON(file);
-    setReview(fileJSON);
-    const result = await verifyPeerReviewCredential(fileJSON);
-    setIsFullCredentialVerified(result.verified);
-    console.log(result);
+    try {
+      const file = event.target.files[0];
+      const fileJSON = await fileToJSON(file);
+      setReview(fileJSON);
+      const result = await verifyReviewCredential(fileJSON);
+      setIsFullCredentialVerified(result.verified);
+      console.log(result);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const handleNextPage = () => {

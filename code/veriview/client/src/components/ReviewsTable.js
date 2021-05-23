@@ -26,6 +26,8 @@ const TableRow = ({ reviewProof }) => {
     // });
     verifyDerivedProof(originalReviewProof).then((res) => {
       setIsVerified(res.verified);
+      // Log output to console why verification failed
+      !res.verified && console.log(res);
     });
   }, []);
 

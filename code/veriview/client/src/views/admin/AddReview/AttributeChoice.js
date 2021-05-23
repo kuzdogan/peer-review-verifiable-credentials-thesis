@@ -1,5 +1,7 @@
 import moment from 'moment';
 import React from 'react';
+import Loader from 'react-loader-spinner';
+import { lightBlue } from 'tailwindcss/colors';
 import ReviewAttribute from './ReviewAttribute';
 import ReviewCheckboxAttribute from './ReviewCheckboxAttribute';
 
@@ -24,7 +26,11 @@ const AttributeChoice = ({ review, handleNextPage, selectedAttributes, setSelect
     <div className='text-xl mb-2 font-bold text-center'> Peer Review Credential </div>
     <div className='flex items-center justify-center'>
       {' '}
-      {isFullCredentialVerified === undefined ? 'undefined' : <VerifiedBadge isVerified={isFullCredentialVerified} />}{' '}
+      {isFullCredentialVerified === undefined ? (
+        <Loader key='submit-loader' type='Oval' color={lightBlue['600']} height={20} width={20} />
+      ) : (
+        <VerifiedBadge isVerified={isFullCredentialVerified} />
+      )}{' '}
     </div>
 
     <div className='text-sm mb-6 text-center'>

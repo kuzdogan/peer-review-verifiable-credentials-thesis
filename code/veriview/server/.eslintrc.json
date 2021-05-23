@@ -3,8 +3,8 @@
     "node": true,
     "jest": true
   },
-  "extends": ["airbnb-base", "plugin:jest/recommended", "plugin:security/recommended", "plugin:prettier/recommended"],
-  "plugins": ["jest", "security", "prettier"],
+  "extends": ["airbnb-base", "plugin:security/recommended", "plugin:prettier/recommended"],
+  "plugins": ["security", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018
   },

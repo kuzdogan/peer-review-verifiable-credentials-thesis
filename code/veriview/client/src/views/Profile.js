@@ -26,11 +26,21 @@ export default function Profile() {
   const groupReviewsByJournalName = (reviews) => {
     const result = {};
     reviews.forEach((rp) => {
-      const journalName = rp.credentialSubject.journal.name;
-      if (result[journalName] === undefined) {
-        result[journalName] = [];
+      const journalName = rp.credentialSubject?.journal?.name;
+      // in no journalName, journalName is 'No journal name'
+      if (!journalName) {
+        // init empty array
+        if (result['No journal name'] === undefined) {
+          result['No journal name'] = [];
+        }
+        result['No journal name'].push(rp);
+      } else {
+        // init empty array
+        if (result[journalName] === undefined) {
+          result[journalName] = [];
+        }
+        result[journalName].push(rp);
       }
-      result[journalName].push(rp);
     });
     return result;
   };
@@ -47,7 +57,7 @@ export default function Profile() {
           }));
           setVerifiedReviewProofs(tempVerifiedProofs.filter((rp) => rp.verified));
           setUnverifiedReviewProofs(tempVerifiedProofs.filter((rp) => !rp.verified));
-          setReviewsByJournalName(groupReviewsByJournalName(tempVerifiedProofs));
+          setReviewsByJournalName(groupReviewsByJournalName(tempVerifiedProofs.filter((rp) => rp.verified)));
         }
       );
     });
@@ -117,7 +127,7 @@ export default function Profile() {
                   <div className='flex flex-wrap'>
                     <div className='w-full'>
                       <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600  my-2'>
-                        Peer Reviews in Journals{' '}
+                        Verified Peer Reviews in Journals{' '}
                       </span>
                       <div className='flex flex-wrap'>{journalBoxes}</div>
                     </div>
@@ -127,7 +137,7 @@ export default function Profile() {
                   <div className='flex flex-wrap'>
                     <div className='w-full'>
                       <span className='text-xl font-bold block uppercase tracking-wide text-blueGray-600  my-2'>
-                        Peer Reviews by Month{' '}
+                        Verified Peer Reviews by Month{' '}
                       </span>
                       <div className='flex flex-wrap'>
                         <ReviewChart reviewProofs={verfiedReviewProofs} />

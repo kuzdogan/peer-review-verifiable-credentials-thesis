@@ -37,9 +37,27 @@ app.use(mongoSanitize());
 // gzip compression
 app.use(compression());
 
-// enable cors
-app.use(cors());
-app.options('*', cors());
+// ======== CORS Policy =======
+const whitelist = ['http://127.0.0.1:3001', 'http://localhost:3001', 'http://journalx.test']; // client as Docker service name instead of localhost.
+const corsOptions = {
+  origin(origin, callback) {
+    if (
+      whitelist.indexOf(origin) !== -1 || // Allow if origin found in whitelist
+      !origin
+    ) {
+      // or a REST tool (postman) is being used or same origin.
+      callback(null, true);
+    } else {
+      callback(new Error(`Not allowed by CORS ${origin}`));
+    }
+  },
+  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
+// Apply CORS policy
+app.all('*', cors(corsOptions), function (req, res, next) {
+  next();
+});
 
 // jwt authentication
 app.use(passport.initialize());
