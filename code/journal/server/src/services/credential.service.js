@@ -126,7 +126,7 @@ async function generateUnsignedCredential(reviewId) {
         type: 'PeerReviewAuthor',
         id: review.reviewer.orcid
           ? `orcid:${review.reviewer.orcid}`
-          : `http://journalx.testz/reviewers/${review.reviewer.id}`, // or DID, or ORCID
+          : `http://journalx.test/reviewers/${review.reviewer.id}`, // or DID, or ORCID
         givenName: review.reviewer.firstName,
         familyName: review.reviewer.lastName,
         email: review.reviewer.email,

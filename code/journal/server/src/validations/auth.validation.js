@@ -6,7 +6,7 @@ const register = {
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     institution: Joi.string().required(),
-    orcid: Joi.string(),
+    orcid: Joi.string().allow(''),
     email: Joi.string().required().email(),
     password: Joi.string().required().custom(password),
   }),
