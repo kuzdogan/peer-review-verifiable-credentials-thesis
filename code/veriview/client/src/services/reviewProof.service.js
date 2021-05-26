@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_PREFIX = '/reviewProofs';
+const API_PREFIX = 'v1/reviewProofs';
 
 export const createReviewProof = (reviewProof) =>
   axios.post(`${API_PREFIX}`, reviewProof, { headers: authHeader() }).then((res) => res.data);

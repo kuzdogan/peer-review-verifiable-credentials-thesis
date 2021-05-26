@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_PREFIX = '/verify';
+const API_PREFIX = 'v1/verify';
 
 // Verify derived proof server side.
 export const verifyDerivedProof = (reviewProof) =>
