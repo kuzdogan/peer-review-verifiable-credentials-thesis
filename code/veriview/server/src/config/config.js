@@ -34,8 +34,8 @@ if (error) {
 
 module.exports = {
   // use deploy PORT if available (e.g. Heroku)
-  env: process.env.PORT || envVars.NODE_ENV,
-  port: envVars.PORT,
+  env: envVars.NODE_ENV,
+  port: process.env.PORT || envVars.PORT,
   mongoose: {
     url: envVars.MONGODB_URL + (envVars.DATABASE === 'test' ? '-test' : ''),
     options: {
