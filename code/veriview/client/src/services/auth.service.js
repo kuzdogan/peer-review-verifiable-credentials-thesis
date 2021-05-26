@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_PREFIX = 'v1/auth';
+const API_PREFIX = '/v1/auth';
 
 export const register = (firstName, lastName, institution, email, password) =>
   axios
