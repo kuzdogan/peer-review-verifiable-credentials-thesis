@@ -27,7 +27,6 @@ const PEER_REVIEW_CONTEXT_URL =
   'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json';
 const VC_CONTEXT_URL = 'https://www.w3.org/2018/credentials/v1';
 const BBS_CONTEXT_URL = 'https://w3id.org/security/bbs/v1';
-const API_URL = 'http://localhost:3000';
 
 const to_b58 = function (
   B, // Uint8Array raw byte input

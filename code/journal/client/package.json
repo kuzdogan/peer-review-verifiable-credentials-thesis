@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "PORT=3001 craco start",
-    "build": "craco build",
+    "build": "INLINE_RUNTIME_CHUNK=false craco build",
     "test": "craco test",
     "lint": "eslint . --ext .js,.jsx",
     "lint-fix": "eslint . --ext .js,.jsx --fix"
@@ -55,5 +55,6 @@
     "postcss": "^7.0.35",
     "prettier": "^2.2.1",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.1.0"
-  }
+  },
+  "proxy": "http://localhost:3000/"
 }
