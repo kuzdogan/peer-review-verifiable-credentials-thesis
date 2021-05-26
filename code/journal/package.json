@@ -8,7 +8,7 @@
     "start": "cd server && npm start",
     "build": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "publishheroku": "cd ../../ && git subtree push --prefix code/veriview heroku-journalx master || true"
+    "publishheroku": "cd ../../ && git subtree push --prefix code/journal heroku-journalx master || true"
   },
   "author": "",
   "license": "ISC"
