@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3010/v1/auth';
+const API_PREFIX = '/auth';
 
 export const register = (firstName, lastName, institution, email, password) =>
   axios
-    .post(`${API_URL}/register`, {
+    .post(`${API_PREFIX}/register`, {
       firstName,
       lastName,
       institution,
@@ -25,7 +25,7 @@ export const register = (firstName, lastName, institution, email, password) =>
 
 export const login = (email, password) =>
   axios
-    .post(`${API_URL}/login`, {
+    .post(`${API_PREFIX}/login`, {
       email,
       password,
     })
@@ -44,7 +44,7 @@ export const login = (email, password) =>
 
 export const logout = () => {
   const refreshToken = localStorage.getItem('refreshToken');
-  return axios.post(`${API_URL}/logout`, { refreshToken }).then(() => {
+  return axios.post(`${API_PREFIX}/logout`, { refreshToken }).then(() => {
     localStorage.removeItem('user');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('accessExpires');

@@ -1,0 +1,18 @@
+{
+  "name": "veriview",
+  "version": "1.0.0",
+  "description": "Veriview npm package",
+  "main": "server/src/index.js",
+  "scripts": {
+    "install": "cd client && npm install && cd ../server && npm install --production",
+    "start": "cd server && npm start",
+    "build": "cd client && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "publishheroku": "cd ../../ && git subtree push --prefix code/veriview heroku-veriview master || true"
+  },
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "12.10.0"
+  }
+}

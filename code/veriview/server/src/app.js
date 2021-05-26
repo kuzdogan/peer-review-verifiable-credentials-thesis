@@ -6,6 +6,7 @@ const compression = require('compression');
 const cors = require('cors');
 const passport = require('passport');
 const httpStatus = require('http-status');
+const path = require('path');
 const config = require('./config/config');
 const morgan = require('./config/morgan');
 const { jwtStrategy } = require('./config/passport');
@@ -38,25 +39,8 @@ app.use(mongoSanitize());
 app.use(compression());
 
 // ======== CORS Policy =======
-const whitelist = ['http://127.0.0.1:3001', 'http://localhost:3001', 'http://veriview.test']; // client as Docker service name instead of localhost.
-const corsOptions = {
-  origin(origin, callback) {
-    if (
-      whitelist.indexOf(origin) !== -1 || // Allow if origin found in whitelist
-      !origin
-    ) {
-      // or a REST tool (postman) is being used or same origin.
-      callback(null, true);
-    } else {
-      callback(new Error(`Not allowed by CORS ${origin}`));
-    }
-  },
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-// Apply CORS policy
-app.all('*', cors(corsOptions), function (req, res, next) {
-  next();
-});
+app.use(cors());
+app.options('*', cors());
 
 // jwt authentication
 app.use(passport.initialize());
@@ -69,6 +53,16 @@ if (config.env === 'production') {
 
 // v1 api routes
 app.use('/v1', routes);
+
+// Serve client side
+if (config.env !== 'development') {
+  app.use(express.static(path.join(__dirname, '../../client/build')));
+  console.log('Serving client');
+  app.get('/*', (req, res) => {
+    console.log('Responding client');
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+  });
+}
 
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
