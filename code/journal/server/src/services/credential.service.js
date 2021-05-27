@@ -23,6 +23,7 @@ const vc_v1 = require('../config/PRCredentials/contexts/vc-v1.json');
 const security_v3_unstable = require('../config/PRCredentials/contexts/security-v3-unstable.json');
 const bbsContext = require('../config/PRCredentials/contexts/bbs.json');
 
+const JOURNAL_URL = process.env.NODE_ENV === 'development' ? 'https://journalx.test' : 'https://journalx.herokuapp.com';
 const PEER_REVIEW_CONTEXT_URL =
   'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json';
 const VC_CONTEXT_URL = 'https://www.w3.org/2018/credentials/v1';
@@ -98,34 +99,32 @@ async function generateUnsignedCredential(reviewId) {
   }
   const jsonld = {
     '@context': [VC_CONTEXT_URL, PEER_REVIEW_CONTEXT_URL, BBS_CONTEXT_URL],
-    id: `http://journalx.test/reviews/${review.id}/credential`,
+    id: `${JOURNAL_URL}/reviews/${review.id}/credential`,
     type: ['VerifiableCredential', 'PeerReviewCredential'],
     name: 'Peer Review Credential version 0.1',
     description: 'A Verifiable Credential representing a peer review that is done for a scholarly article.',
     issuer: keyPairOptions.controller,
     issuanceDate: new Date().toISOString(),
     credentialSubject: {
-      id: `http://journalx.test/users/${review.id}`,
+      id: `${JOURNAL_URL}/users/${review.id}`,
       type: 'PeerReview',
       title: review.title,
       content: review.content,
       reviewDate: review.submissionDate.toISOString(),
       competingInterestStatement: review.competingInterestStatement,
       journal: {
-        id: 'http://journalx.test/',
+        id: `${JOURNAL_URL}/`,
         name: 'International Journal of X',
         issn: '2046-1402',
       },
       manuscript: {
-        id: `http://journalx.test/manuscripts/${review.manuscript.id}`,
+        id: `${JOURNAL_URL}/manuscripts/${review.manuscript.id}`,
         title: review.manuscript.title,
         abstract: review.manuscript.abstract,
       },
       author: {
         type: 'PeerReviewAuthor',
-        id: review.reviewer.orcid
-          ? `orcid:${review.reviewer.orcid}`
-          : `http://journalx.test/reviewers/${review.reviewer.id}`, // or DID, or ORCID
+        id: review.reviewer.orcid ? `orcid:${review.reviewer.orcid}` : `${JOURNAL_URL}/reviewers/${review.reviewer.id}`, // or DID, or ORCID
         givenName: review.reviewer.firstName,
         familyName: review.reviewer.lastName,
         email: review.reviewer.email,
