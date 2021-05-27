@@ -1,0 +1,20 @@
+{
+  "@context": ["https://www.w3.org/ns/did/v1", "https://w3id.org/security/bbs/v1"],
+  "id": "did:web:journalx.herokuapp.com",
+  "assertionMethod": [
+    {
+      "id": "did:web:journalx.herokuapp.com#credentialsKey",
+      "type": "BbsBlsSignature2020",
+      "controller": "did:web:journalx.herokuapp.com",
+      "publicKeyBase58": "23V58StUorHjCjukwEfuyvSMDAisf5sgxKvBCAyt3jQTD5zVCw57haoqotHxbqQQZ5WmruofpXUfSNDEVv9gfHE7sFD4fULfhESpJC2FyH2CNaga1Tuzr6VpMcAfUvo3BYGA"
+    }
+  ],
+  "verificationMethod": [
+    {
+      "id": "did:web:journalx.herokuapp.com#credentialsKey",
+      "type": "BbsBlsSignature2020",
+      "controller": "did:web:journalx.herokuapp.com",
+      "publicKeyBase58": "23V58StUorHjCjukwEfuyvSMDAisf5sgxKvBCAyt3jQTD5zVCw57haoqotHxbqQQZ5WmruofpXUfSNDEVv9gfHE7sFD4fULfhESpJC2FyH2CNaga1Tuzr6VpMcAfUvo3BYGA"
+    }
+  ]
+}

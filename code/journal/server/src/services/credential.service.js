@@ -14,7 +14,7 @@ const { getReviewById } = require('./review.service');
 // const controller = require('../config/PRCredentials/did.json');
 // const controller = require('../config/PRCredentials/controllerDocument.json');
 const ApiError = require('../utils/ApiError');
-const keyPairOptions = require('../config/PRCredentials/keypairDID.json');
+const keyPairOptions = require('../config/PRCredentials/keypairDID');
 // const keyPairOptions = require('../config/PRCredentials/keypair.json');
 
 // cached contexts

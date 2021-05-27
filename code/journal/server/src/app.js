@@ -56,6 +56,10 @@ app.use('/v1', routes);
 
 // Serve client side
 if (config.env !== 'development') {
+  app.get('/.well-known/did.json', (req, res) => {
+    console.log('Sending DID');
+    res.sendFile(path.join(__dirname, '../../client/build/.well-known/did-prod.json'));
+  });
   app.use(express.static(path.join(__dirname, '../../client/build')));
   console.log('Serving client');
   app.get('/*', (req, res) => {
