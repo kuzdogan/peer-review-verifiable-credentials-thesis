@@ -3,7 +3,7 @@ import authHeader from './auth-header';
 
 const API_PREFIX = '/v1/manuscripts';
 
-export const createManuscript = (manuscriptObj) => axios.post(`${API_URL}`, manuscriptObj, { headers: authHeader() });
+export const createManuscript = (manuscriptObj) => axios.post(`${API_PREFIX}`, manuscriptObj, { headers: authHeader() });
 
 export const readManuscript = (manuscriptId) =>
   axios.get(`${API_PREFIX}/${manuscriptId}`, { headers: authHeader() }).then((response) => response.data);
@@ -34,4 +34,4 @@ export const assignReviewersToManuscript = (manuscript, newReviewerIds) => {
 };
 
 export const updateManuscript = (id, updateBody) =>
-  axios.patch(`${API_URL}/${id}`, updateBody, { headers: authHeader() }).then((response) => response.data);
+  axios.patch(`${API_PREFIX}/${id}`, updateBody, { headers: authHeader() }).then((response) => response.data);
