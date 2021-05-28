@@ -4,5 +4,7 @@ export default function authHeader() {
   if (token) {
     return { Authorization: `Bearer ${token}` };
   }
-  throw new Error('Access token not found. Please authenticate');
+  console.log('You are not authenticated');
+  return {};
+  // throw new Error('Access token not found. Please authenticate');
 }
