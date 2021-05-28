@@ -16,7 +16,7 @@ There are platforms trying to solve this problem, the most prominent being [Publ
 
 So, current solutions to **review recognition** problem creates new problems. We have first hand experience in scientific publishing of what happens when scientific data is put behind walled gardens and when for profit institutions decides what constitutes sound science and what is not. How can we avoid the problems in manuscript publishing to occur in peer reviewing? How can we create direct **trust** in the peer review ecosystem and avoid third parties? How can we open peer review data, without violating current peer review practices?
 
-Recent technologies may enable this. [_Verifiable Credentials_](https://www.w3.org/TR/vc-data-model/) is a recent W3C specification for exchanging digital credentials in a secure, tamper-evident, privacy preserving, and a machine verifiable, interoperable way. It could be used for driver's licenses, passports, tickets, university degrees, vaccinations [1](https://w3c-ccg.github.io/vaccination-vocab/)[2](https://www.covidcreds.org/)... Any claim by anyone may constitute a credential. It leverages digital signatures to provide verifiablity and tamper-evidence. Also through **Zero Knowledge Proofs** it is possible to **selectively disclose** attributes of a credential. The classical example is when buying drinks, you wouldn't need to share your whole ID card, but selectively disclose your birthday but not your photo, address etc., or even create a zk-proof of "Over 18".
+Recent technologies may enable this. [_Verifiable Credentials_](https://www.w3.org/TR/vc-data-model/) is a recent W3C specification for exchanging digital credentials in a secure, tamper-evident, privacy preserving, and a machine verifiable, interoperable way. It could be used for driver's licenses, passports, tickets, university degrees, vaccinations \[[1](https://w3c-ccg.github.io/vaccination-vocab/), [2](https://www.covidcreds.org/)\]... Any claim by anyone may be a credential. It leverages digital signatures to provide verifiablity and tamper-evidence. Also through **Zero Knowledge Proofs** it is possible to **selectively disclose** attributes of a credential. The classical example is when buying drinks, you wouldn't need to share your whole ID card, but selectively disclose your birthday but not your photo, address etc., or even create a zk-proof of "Over 18".
 
 ### This repo
 
@@ -41,13 +41,13 @@ A typical flow is as follows:
 
 ## Try it out
 
-The two platforms are deployed at: journalx.herokuapp.com and veriview.herokuapp.com. You may have to wait a little for the pages to load as Heroku dynos wake up.
+The two platforms are deployed at: [journalx.herokuapp.com](https://journalx.herokuapp.com) and [veriview.herokuapp.com](https://veriview.herokuapp.com). You may have to wait a little for the pages to load as Heroku dynos wake up.
 
 1. Go to Journal X and register a user. (You can leave ORCID blank)
 1. Take note of the user id on the sidebar (60b0a7851137b00...).
-1. Log out and create another user or login to Alice Smith: `alice@test.com` `alice12345`.
+1. Log out and create another user or login to Alice Smith: email:`alice@test.com` pass: `alice12345`.
 1. Submit a manuscript. You can choose one with open peer review from [F1000Research](https://f1000research.com/browse/articles).
-1. Log in to the editor: `admin@test.com` `admin12345`
+1. Log in to the editor: email:`admin@test.com` pass:`admin12345`
 1. Click "Manage Reviews" and "Start a Review" above.
 1. Click on the manuscript card you want to start the review process for. (not on the title)
 1. Click "Add Reviewer" and paste the user id you took note of. Set a deadline. Add more reviewers if you'd like.
