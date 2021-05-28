@@ -1,0 +1,68 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "schema": "http://schema.org/",
+    "PeerReviewCredential": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewCredential",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "description": "schema:description",
+        "name": "schema:name"
+      }
+    },
+    "PeerReview": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReview",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "title": "schema:headline",
+        "content": "schema:text",
+        "reviewDate": "schema:dateCreated",
+        "competingInterestStatement": "schema:Text",
+        "recommendation": "schema:Recommendation",
+        "journal": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#journal",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "name": "schema:name",
+            "issn": "schema:issn"
+          }
+        },
+        "manuscript": {
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#manuscript",
+          "@context": {
+            "@version": 1.1,
+            "@protected": true,
+            "id": "@id",
+            "type": "@type",
+            "title": "schema:headline",
+            "abstract": "schema:abstract"
+          }
+        },
+        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author"
+      }
+    },
+    "PeerReviewAuthor": {
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "givenName": "schema:givenName",
+        "familyName": "schema:familyName",
+        "institution": "schema:Organization",
+        "email": "schema:email"
+      }
+    }
+  }
+}
