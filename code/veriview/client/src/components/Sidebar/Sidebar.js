@@ -123,7 +123,7 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              <li className='items-center'>
+              {/* <li className='items-center'>
                 <Link
                   className={
                     'text-xs uppercase py-3 font-bold block ' +
@@ -141,6 +141,16 @@ export default function Sidebar() {
                   ></i>{' '}
                   Settings
                 </Link>
+              </li> */}
+              <li className='items-center'>
+                <a
+                  className='text-xs uppercase py-3 font-bold block text-blueGray-700 hover:text-blueGray-500'
+                  href={`/profile/${user._id}`}
+                  rel='noopener noreferrer'
+                  target='_blank'
+                >
+                  <i className='fas fa-external-link-alt mr-2 text-sm opacity-75'></i> Public Profile
+                </a>
               </li>
             </ul>
           </div>

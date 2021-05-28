@@ -75,15 +75,15 @@ export default function Profile() {
       <main className='profile-page'>
         <section className='relative py-160'>
           <div className='container mx-auto px-4'>
-            <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg'>
+            <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg  py-16'>
               <div className='px-6'>
                 <div className='flex flex-wrap justify-center'>
                   <div className='w-full lg:w-3/12 px-4 lg:order-2 flex justify-center'>
                     <div className='relative'>
                       <img
                         alt='...'
-                        src={require('assets/img/team-2-800x800.jpg').default}
-                        className='shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px'
+                        src={require('assets/img/person-icon.png').default}
+                        className='shadow-xl rounded-full h-auto align-middle border-none max-w-150-px'
                       />
                     </div>
                   </div>

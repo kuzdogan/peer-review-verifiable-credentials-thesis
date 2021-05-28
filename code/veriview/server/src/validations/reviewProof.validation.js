@@ -16,7 +16,7 @@ const createReviewProof = {
       title: Joi.string(),
       content: Joi.string(),
       reviewDate: Joi.string(),
-      competingInterestStatement: Joi.string(),
+      competingInterestStatement: Joi.string().allow(''),
       journal: Joi.object().keys({
         id: Joi.string(),
         name: Joi.string(),

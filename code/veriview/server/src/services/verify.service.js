@@ -12,14 +12,17 @@ const vc_v1 = require('../config/contexts/vc-v1.json');
 const security_v3_unstable = require('../config/contexts/security-v3-unstable.json');
 const bbsContext = require('../config/contexts/bbs.json');
 const didDoc = require('../config/did.json');
+const didContext = require('../config/contexts/did.json');
 
 // cached contexts
 const contexts = {
   'did:example:489398593#test': exampleControllerDoc,
   'did:example:489398593': exampleControllerDoc,
+  'https://www.w3.org/ns/did/v1': didContext,
   // 'did:web:journalx.test#credentialsKey': didDoc,
   // 'did:web:journalx.test': didDoc,
-  'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json': peerReviewSchema,
+  'https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json':
+    peerReviewSchema,
   'https://www.w3.org/2018/credentials/v1': vc_v1,
   ...securityContexts, // security-v1, security-v2
   'https://w3id.org/security/v3-unstable': security_v3_unstable,
