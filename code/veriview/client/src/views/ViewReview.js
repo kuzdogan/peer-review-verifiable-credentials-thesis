@@ -58,6 +58,17 @@ const ViewReviews = () => {
           <hr className='my-2' />
 
           <div className=''>
+            <div className='mt-4 text-lg font-bold underline'>Review Author</div>
+            <ReviewAttribute label='Author ID' value={review.credentialSubject.author.id} />
+            <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
+            <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
+            <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />
+            <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+          </div>
+
+          <hr className='my-2' />
+
+          <div className=''>
             <div className='mt-4 text-lg font-bold underline'>Review</div>
             <ReviewAttribute label='Review ID' value={review.credentialSubject.id} />
             <ReviewAttribute label='Type' value={review.credentialSubject.type} />
@@ -75,31 +86,25 @@ const ViewReviews = () => {
 
           <div className=''>
             <div className='mt-4 text-lg font-bold underline'>Journal</div>
-            {review.credentialSubject.journal.id && <ReviewAttribute label='ID' value={review.credentialSubject.journal.id} />}
-            {review.credentialSubject.journal.name && (
+            {review.credentialSubject.journal?.id && <ReviewAttribute label='ID' value={review.credentialSubject.journal.id} />}
+            {review.credentialSubject.journal?.name && (
               <ReviewAttribute label='Name' value={review.credentialSubject.journal.name} />
             )}
-            {review.credentialSubject.journal.issn && (
+            {review.credentialSubject.journal?.issn && (
               <ReviewAttribute label='ISSN' value={review.credentialSubject.journal.issn} />
             )}
           </div>
 
           <div className=''>
-            <div className='mt-4 text-lg font-bold underline'>Review Author</div>
-            {review.credentialSubject.author.id && (
-              <ReviewAttribute label='Author ID' value={review.credentialSubject.author.id} />
+            <div className='mt-4 text-lg font-bold underline'>Manuscript</div>
+            {review.credentialSubject.manuscript?.id && (
+              <ReviewAttribute label='ID' value={review.credentialSubject.manuscript.id} />
             )}
-            {review.credentialSubject.author.givenName && (
-              <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
+            {review.credentialSubject.manuscript?.title && (
+              <ReviewAttribute label='Title' value={review.credentialSubject.manuscript.title} />
             )}
-            {review.credentialSubject.author.familyName && (
-              <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
-            )}
-            {review.credentialSubject.author.email && (
-              <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />
-            )}
-            {review.credentialSubject.author.institution && (
-              <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+            {review.credentialSubject.manuscript?.abstract && (
+              <ReviewAttribute label='Abstract' value={review.credentialSubject.manuscript.abstract} />
             )}
           </div>
         </div>

@@ -68,7 +68,7 @@ const reviewProofSchema = mongoose.Schema(
           type: String,
         },
       },
-      manuscipt: {
+      manuscript: {
         id: {
           type: String,
         },

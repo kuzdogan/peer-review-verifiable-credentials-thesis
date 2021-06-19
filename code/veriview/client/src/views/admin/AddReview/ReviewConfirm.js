@@ -16,6 +16,17 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
     <hr className='my-2' />
 
     <div className=''>
+      <div className='mt-4 text-lg font-bold underline'>Review Author</div>
+      <ReviewAttribute label='Author ID' value={review.credentialSubject.author.id} />
+      <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
+      <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
+      <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />
+      <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+    </div>
+
+    <hr className='my-2' />
+
+    <div className=''>
       <div className='mt-4 text-lg font-bold underline'>Review</div>
       <ReviewAttribute label='Review ID' value={review.credentialSubject.id} />
       <ReviewAttribute label='Type' value={review.credentialSubject.type} />
@@ -39,17 +50,11 @@ const ReviewConfirm = ({ handlePrevPage, review, selectedAttributes, handleNextP
     </div>
 
     <div className=''>
-      <div className='mt-4 text-lg font-bold underline'>Review Author</div>
-      {selectedAttributes.author.id && <ReviewAttribute label='Author ID' value={review.credentialSubject.author.id} />}
-      {selectedAttributes.author.givenName && (
-        <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
-      )}
-      {selectedAttributes.author.familyName && (
-        <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
-      )}
-      {selectedAttributes.author.email && <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />}
-      {selectedAttributes.author.institution && (
-        <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+      <div className='mt-4 text-lg font-bold underline'>Manuscript</div>
+      {selectedAttributes.manuscript.id && <ReviewAttribute label='ID' value={review.credentialSubject.manuscript.id} />}
+      {selectedAttributes.manuscript.title && <ReviewAttribute label='Title' value={review.credentialSubject.manuscript.title} />}
+      {selectedAttributes.manuscript.abstract && (
+        <ReviewAttribute label='Abstract' value={review.credentialSubject.manuscript.abstract} />
       )}
     </div>
     <div className='flex mt-4 justify-between'>

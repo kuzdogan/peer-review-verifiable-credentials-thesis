@@ -47,6 +47,17 @@ const AttributeChoice = ({ review, handleNextPage, selectedAttributes, setSelect
     <hr className='my-2' />
 
     <div className=''>
+      <div className='mt-4 text-lg font-bold underline'>Review Author</div>
+      <ReviewAttribute label='Author ID' value={review.credentialSubject.author.id} />
+      <ReviewAttribute label='Given Name' value={review.credentialSubject.author.givenName} />
+      <ReviewAttribute label='Family Name' value={review.credentialSubject.author.familyName} />
+      <ReviewAttribute label='Email' value={review.credentialSubject.author.email} />
+      <ReviewAttribute label='Institution' value={review.credentialSubject.author.institution} />
+    </div>
+
+    <hr className='my-2' />
+
+    <div className=''>
       <div className='mt-4 text-lg font-bold underline'>Review</div>
       <ReviewAttribute label='Review ID' value={review.credentialSubject.id} />
       <ReviewAttribute label='Type' value={review.credentialSubject.type} />
@@ -99,39 +110,27 @@ const AttributeChoice = ({ review, handleNextPage, selectedAttributes, setSelect
     </div>
 
     <div className=''>
-      <div className='mt-4 text-lg font-bold underline'>Review Author</div>
+      <div className='mt-4 text-lg font-bold underline'>Manuscript</div>
       <ReviewCheckboxAttribute
-        label='Author ID'
-        value={review.credentialSubject.author.id}
-        checked={selectedAttributes.author.id}
-        onChange={() => setSelectedAttributes((pre) => ({ ...pre, author: { ...pre.author, id: !pre.author.id } }))}
+        label='ID'
+        value={review.credentialSubject.manuscript.id}
+        checked={selectedAttributes.manuscript.id}
+        onChange={() => setSelectedAttributes((pre) => ({ ...pre, manuscript: { ...pre.manuscript, id: !pre.manuscript.id } }))}
       />
       <ReviewCheckboxAttribute
-        label='Given Name'
-        value={review.credentialSubject.author.givenName}
-        checked={selectedAttributes.author.givenName}
-        onChange={() => setSelectedAttributes((pre) => ({ ...pre, author: { ...pre.author, givenName: !pre.author.givenName } }))}
-      />
-      <ReviewCheckboxAttribute
-        label='Family Name'
-        value={review.credentialSubject.author.familyName}
-        checked={selectedAttributes.author.familyName}
+        label='Title'
+        value={review.credentialSubject.manuscript.title}
+        checked={selectedAttributes.manuscript.title}
         onChange={() =>
-          setSelectedAttributes((pre) => ({ ...pre, author: { ...pre.author, familyName: !pre.author.familyName } }))
+          setSelectedAttributes((pre) => ({ ...pre, manuscript: { ...pre.manuscript, title: !pre.manuscript.title } }))
         }
       />
       <ReviewCheckboxAttribute
-        label='Email'
-        value={review.credentialSubject.author.email}
-        checked={selectedAttributes.author.email}
-        onChange={() => setSelectedAttributes((pre) => ({ ...pre, author: { ...pre.author, email: !pre.author.email } }))}
-      />
-      <ReviewCheckboxAttribute
-        label='Institution'
-        value={review.credentialSubject.author.institution}
-        checked={selectedAttributes.author.institution}
+        label='Abstract'
+        value={review.credentialSubject.manuscript.abstract}
+        checked={selectedAttributes.manuscript.abstract}
         onChange={() =>
-          setSelectedAttributes((pre) => ({ ...pre, author: { ...pre.author, institution: !pre.author.institution } }))
+          setSelectedAttributes((pre) => ({ ...pre, manuscript: { ...pre.manuscript, abstract: !pre.manuscript.abstract } }))
         }
       />
     </div>

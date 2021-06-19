@@ -20,12 +20,10 @@ const AddReview = () => {
       name: true,
       issn: true,
     },
-    author: {
+    manuscript: {
       id: true,
-      givenName: true,
-      familyName: true,
-      email: true,
-      institution: true,
+      title: true,
+      abstract: true,
     },
   });
 

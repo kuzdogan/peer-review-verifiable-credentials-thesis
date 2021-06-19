@@ -8,6 +8,7 @@ const ApiError = require('../utils/ApiError');
  * @returns {Promise<ReviewProof>}
  */
 const createReviewProof = async (reviewProofBody, user) => {
+  console.log(reviewProofBody);
   const reviewProof = await ReviewProof.create({ ...reviewProofBody, user: user._id });
   return reviewProof;
 };
