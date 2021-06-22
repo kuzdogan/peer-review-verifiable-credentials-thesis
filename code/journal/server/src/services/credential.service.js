@@ -106,7 +106,7 @@ async function generateUnsignedCredential(reviewId) {
     issuer: keyPairOptions.controller,
     issuanceDate: new Date().toISOString(),
     credentialSubject: {
-      id: `${JOURNAL_URL}/users/${review.id}`,
+      id: `${JOURNAL_URL}/reviews/${review.id}`,
       type: 'PeerReview',
       title: review.title,
       content: review.content,

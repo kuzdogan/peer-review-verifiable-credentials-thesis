@@ -24,8 +24,8 @@
         "title": "schema:headline",
         "content": "schema:text",
         "reviewDate": "schema:dateCreated",
-        "competingInterestStatement": "schema:Text",
-        "recommendation": "schema:Recommendation",
+        "competingInterestStatement": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#competingInterestStatement",
+        "recommendation": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#recommendation",
         "journal": {
           "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#journal",
           "@context": {
