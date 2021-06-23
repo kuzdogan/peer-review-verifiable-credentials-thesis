@@ -6,7 +6,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter/dist/esm/default-highlig
 import { sunburst } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import { readReviewProof } from 'services/reviewProof.service';
 import colors from 'tailwindcss/colors';
-import { formatDBreviewProof } from 'utils/deriveProof';
+import { formatDBreviewProof } from 'utils/credentialUtils';
 import ReviewAttribute from './admin/AddReview/ReviewAttribute';
 
 const ViewReviews = () => {

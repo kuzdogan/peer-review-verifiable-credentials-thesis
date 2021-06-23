@@ -3,8 +3,8 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import Loader from 'react-loader-spinner';
 import { Link } from 'react-router-dom';
-import { verifyDerivedProof } from 'services/verify.service';
-import { formatDBreviewProof } from 'utils/deriveProof';
+// import { verifyDerivedProof } from 'services/verify.service';
+import { formatDBreviewProof, verifyDerivedProof } from 'utils/credentialUtils';
 
 const TableHeaderCell = ({ label }) => (
   <th className='px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-blueGray-50 text-blueGray-500 border-blueGray-100'>

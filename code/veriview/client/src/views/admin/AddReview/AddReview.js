@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import { verifyReviewCredential } from 'services/verify.service';
+import { verifyReviewCredential } from 'utils/credentialUtils';
+// import { verifyReviewCredential } from 'services/verify.service';
 import AttributeChoice from './AttributeChoice';
 import DeriveReview from './DeriveReview';
 import ReviewConfirm from './ReviewConfirm';

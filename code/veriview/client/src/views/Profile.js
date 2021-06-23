@@ -2,8 +2,8 @@ import ReviewsTable from 'components/ReviewsTable';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { getUserById } from 'services/user.service';
-import { verifyDerivedProof } from 'services/verify.service';
-import { formatDBreviewProof } from 'utils/deriveProof';
+import { formatDBreviewProof, verifyDerivedProof } from 'utils/credentialUtils';
+// import { verifyDerivedProof } from 'services/verify.service';
 import ReviewChart from '../components/ReviewChart';
 import { readReviewProofs } from '../services/reviewProof.service';
 
