@@ -51,7 +51,7 @@ const customDocLoader = async (url) => {
 };
 const documentLoader = extendContextLoader(customDocLoader);
 
-async function selectiveDisclose(signedDocument, revealDocument) {
+export async function selectiveDisclose(signedDocument, revealDocument) {
   console.log('Deriving proof');
   const derivedProof = await deriveProof(signedDocument, revealDocument, {
     suite: new BbsBlsSignatureProof2020(),
@@ -60,7 +60,7 @@ async function selectiveDisclose(signedDocument, revealDocument) {
   return derivedProof;
 }
 
-async function verifyDerivedProof(derivedProof) {
+export async function verifyDerivedProof(derivedProof) {
   const verified = await verify(derivedProof, {
     suite: new BbsBlsSignatureProof2020(),
     purpose: new purposes.AssertionProofPurpose(),
@@ -69,7 +69,7 @@ async function verifyDerivedProof(derivedProof) {
   return verified;
 }
 
-async function verifyReviewCredential(signedCredential) {
+export async function verifyReviewCredential(signedCredential) {
   const isVerified = await verify(signedCredential, {
     suite: new BbsBlsSignature2020(),
     purpose: new purposes.AssertionProofPurpose(),
@@ -81,14 +81,7 @@ async function verifyReviewCredential(signedCredential) {
 /**
  * Strip mongo properties from a ReviewProof to be able to verify it
  */
-function formatDBreviewProof(reviewProof) {
+export function formatDBreviewProof(reviewProof) {
   const { createdAt, _id, user, ...originalReviewProof } = reviewProof;
   return originalReviewProof;
 }
-
-module.exports = {
-  selectiveDisclose,
-  verifyDerivedProof,
-  verifyReviewCredential,
-  formatDBreviewProof,
-};
