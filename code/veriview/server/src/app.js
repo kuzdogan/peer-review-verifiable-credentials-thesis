@@ -23,7 +23,23 @@ if (config.env !== 'test') {
 }
 
 // set security HTTP headers
-app.use(helmet());
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      useDefaults: true,
+      directives: {
+        'default-src': ["'self'", 'journalx.herokuapp.com', "'unsafe-inline'", "'unsafe-eval'"],
+        'script-src': ["'self'", 'journalx.herokuapp.com', "'unsafe-inline'", "'unsafe-eval'"],
+        'connect-src': ["'self'", 'journalx.herokuapp.com', "'unsafe-inline'"],
+        'img-src': ["'self'", 'journalx.herokuapp.com', 'data:', 'blob:', "'unsafe-inline'"],
+        'frame-src': ["'self'", 'journalx.herokuapp.com'],
+        'style-src': ["'self'", 'journalx.herokuapp.com', "'unsafe-inline'"],
+      },
+    },
+  })
+);
+console.log('off content');
 
 // parse json request body
 app.use(express.json());
@@ -60,10 +76,6 @@ if (config.env !== 'development') {
   console.log('Serving client');
   app.get('/*', (req, res) => {
     console.log('Responding client');
-    res.set(
-      'Content-Security-Policy',
-      "default-src 'self' journalx.herokuapp.com 'unsafe-inline' 'unsafe-eval'; script-src 'self' journalx.herokuapp.com 'unsafe-inline' 'unsafe-eval'; connect-src 'self' journalx.herokuapp.com 'unsafe-inline'; img-src 'self' journalx.herokuapp.com data: blob: 'unsafe-inline'; frame-src 'self' journalx.herokuapp.com; style-src 'self' journalx.herokuapp.com 'unsafe-inline';"
-    );
     res.sendFile(path.join(__dirname, '../../client/build/index.html'));
   });
 }
