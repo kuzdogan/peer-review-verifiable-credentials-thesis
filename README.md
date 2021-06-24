@@ -47,7 +47,7 @@ The two platforms are deployed at: [journalx.herokuapp.com](https://journalx.her
 1. Take note of the user id on the sidebar (60b0a7851137b00...).
 1. Log out and create another user or login to Alice Smith: email:`alice@test.com` pass: `alice12345`.
 1. Submit a manuscript. You can choose one with open peer review from [F1000Research](https://f1000research.com/browse/articles).
-1. Log in to the editor: email:`admin@test.com` pass:`admin12345`
+1. Log in to the editor: email:`editor@test.com` pass:`admin12345`
 1. Click "Manage Reviews" and "Start a Review" above.
 1. Click on the manuscript card you want to start the review process for. (not on the title)
 1. Click "Add Reviewer" and paste the user id you took note of. Set a deadline. Add more reviewers if you'd like.
