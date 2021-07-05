@@ -1,13 +1,11 @@
 {
   "@context": {
     "@version": 1.1,
-    "@protected": true,
     "schema": "http://schema.org/",
     "PeerReviewCredential": {
-      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewCredential",
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#PeerReviewCredential",
       "@context": {
         "@version": 1.1,
-        "@protected": true,
         "id": "@id",
         "type": "@type",
         "description": "schema:description",
@@ -15,22 +13,20 @@
       }
     },
     "PeerReview": {
-      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReview",
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#PeerReview",
       "@context": {
         "@version": 1.1,
-        "@protected": true,
         "id": "@id",
         "type": "@type",
         "title": "schema:headline",
         "content": "schema:text",
         "reviewDate": "schema:dateCreated",
-        "competingInterestStatement": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#competingInterestStatement",
-        "recommendation": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#recommendation",
+        "competingInterestStatement": "schema:Text",
+        "recommendation": "schema:Recommendation",
         "journal": {
-          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#journal",
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#journal",
           "@context": {
             "@version": 1.1,
-            "@protected": true,
             "id": "@id",
             "type": "@type",
             "name": "schema:name",
@@ -38,24 +34,22 @@
           }
         },
         "manuscript": {
-          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#manuscript",
+          "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#manuscript",
           "@context": {
             "@version": 1.1,
-            "@protected": true,
             "id": "@id",
             "type": "@type",
             "title": "schema:headline",
             "abstract": "schema:abstract"
           }
         },
-        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#author"
+        "author": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#author"
       }
     },
     "PeerReviewAuthor": {
-      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReviewVC.json#PeerReviewAuthor",
+      "@id": "https://raw.githubusercontent.com/kuzdogan/peer-review-verifiable-credentials-thesis/main/code/PeerReview.json#PeerReviewAuthor",
       "@context": {
         "@version": 1.1,
-        "@protected": true,
         "id": "@id",
         "type": "@type",
         "givenName": "schema:givenName",
