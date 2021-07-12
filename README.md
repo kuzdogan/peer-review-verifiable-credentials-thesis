@@ -43,19 +43,17 @@ A typical flow is as follows:
 
 The two platforms are deployed at: [journalx.herokuapp.com](https://journalx.herokuapp.com) and [veriview.herokuapp.com](https://veriview.herokuapp.com). You may have to wait a little for the pages to load as Heroku dynos wake up.
 
-1. Go to Journal X and register a user. (You can leave ORCID blank)
+1. Go to Journal X and register a user. (You can leave ORCID blank, set a password with both numbers and characters. like: alice12345)
 1. Take note of the user id on the sidebar (60b0a7851137b00...).
-1. Log out and create another user or login to Alice Smith: email:`alice@test.com` pass: `alice12345`.
-1. Submit a manuscript. You can choose one with open peer review from [F1000Research](https://f1000research.com/browse/articles).
 1. Log in to the editor: email:`editor@test.com` pass:`admin12345`
 1. Click "Manage Reviews" and "Start a Review" above.
 1. Click on the manuscript card you want to start the review process for. (not on the title)
 1. Click "Add Reviewer" and paste the user id you took note of. Set a deadline. Add more reviewers if you'd like.
 1. Click "Assign Reviewers"
 1. Log in to the reviewer account. Click "Reviews". You'll see an assigned review. Click "Write Review".
-1. Fill the review fields. If you got the manuscript from F1000 you can copy its review. Submit your review.
+1. Fill the review fields. Submit your review.
 1. Click "Issue Credential" to download your Verifiable Credential.
-1. Go to Veriview and create a profile.
+1. Go to Veriview and create a profile (again, password with numbers and characters).
 1. Click "Add Review" and "Add a Review Credential". Choose your downloaded Verifiable Credential.
 1. Select the attributes you'd like to publicly disclose. Click "Next". Check the information you'll share. Click "Next". This will generate a selectively disclosed credential.
 1. You can view the generated credential and its proof. Also you can view the raw JSON-LD by clicking "Show Code". "Submit" the generated credential.
