@@ -2,7 +2,9 @@
 
 This is a PoC imlementation for the Master's Thesis: Peer Review Verification with Verifiable Credentials and Zero-Knowledge Proofs. The code is deployed and a Demo is available under [Try it out](#try-it-out) section.
 
-Thesis document is accesible [here](https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis-document/blob/main/Peer_Review_Verification_with_Verifiable_Credentials_and_Zero_Knowledge_Proofs_Final.pdf)
+Thesis document is accesible [here](https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis-document/blob/main/Peer_Review_Verification_with_Verifiable_Credentials_and_Zero_Knowledge_Proofs_Final.pdf) 
+
+Final presentation available [here](https://github.com/kuzdogan/peer-review-verifiable-credentials-thesis-document/blob/main/Kaan%20Uzdogan%20-%20Peer%20Review%20Verification%20with%20Verifiable%20Credentials%20and%20Zero-Knowledge%20Proofs.pdf)
 
 ## Introduction
 
